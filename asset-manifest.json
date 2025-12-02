@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/TMDb-Movies-app/static/js/main.3644692d.js",
+    "index.html": "/TMDb-Movies-app/index.html",
+    "main.3644692d.js.map": "/TMDb-Movies-app/static/js/main.3644692d.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.3644692d.js"
+  ]
+}
