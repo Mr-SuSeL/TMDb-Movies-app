@@ -46,5 +46,5 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 Builds the app and deploys it to GitHub Pages.  
 Make sure your `package.json` contains:
 
-- `"homepage": "https://MR-SuSeL.github.io/TMDb-Movies-app"` (replace with actual GitHub URL)
+- `"homepage": "https://mr-susel.github.io/TMDb-Movies-app"`
 - scripts:  
