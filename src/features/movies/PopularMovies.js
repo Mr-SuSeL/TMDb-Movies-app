@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MovieCard from './components/MovieCard';
 import { MoviesGrid } from './components/MoviesGrid/styled';
-import { fetchPopularMovies } from '../../store/slices/moviesSlice';
+import { fetchPopularMoviesRequest } from '../../store/slices/moviesSlice';
 
 function PopularMovies() {
   const dispatch = useDispatch();
   const { popularMovies, loading, error } = useSelector(state => state.movies);
 
   useEffect(() => {
-    dispatch(fetchPopularMovies());
+    dispatch(fetchPopularMoviesRequest());
   }, [dispatch]);
 
   if (loading) return <p>Ładowanie popularnych filmów...</p>;
