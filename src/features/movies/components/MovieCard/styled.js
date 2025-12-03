@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MovieCardContainer = styled.article`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.cardBg || '#ffffff'};
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);

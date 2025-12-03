@@ -1,26 +1,23 @@
+// src/styledGlobals.js
 import styled from 'styled-components';
 
 export const AppContainer = styled.div`
-  text-align: center;
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const AppHeader = styled.header`
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
 `;
 
 export const AppLink = styled.a`
-  color: #6178fbff;
+  color: #3b82f6;
   text-decoration: none;
 
   &:hover {
-    color: #21a8f0;
+    text-decoration: underline;
   }
 `;
