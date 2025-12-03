@@ -58,11 +58,11 @@ export const MovieTitle = styled.h3`
   font-size: 1rem;
   margin: 0;
   font-weight: 600;
-  color: #111827;
+  color: ${({ theme }) => theme.text || '#111827'};
 `;
 
 export const MovieYear = styled.p`
   margin: 0;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: ${({ theme }) => theme.mutedText || '#6b7280'};
 `;
