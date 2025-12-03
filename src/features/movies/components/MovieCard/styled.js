@@ -1,45 +1,45 @@
 import styled from 'styled-components';
 
-export const MovieCardContainer = styled.div`
-  position: relative;
-  border-radius: 8px;
+export const MovieCardContainer = styled.article`
+  background-color: #ffffff;
+  border-radius: 16px;
   overflow: hidden;
-  background-color: #1a1a1a;
-  transition: transform 0.2s;
-  height: 100%;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
   }
 `;
 
 export const MoviePoster = styled.div`
   position: relative;
-  aspect-ratio: 2/3;
   width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 `;
 
 export const MovieOverlay = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.8)
+    rgba(15, 23, 42, 0) 40%,
+    rgba(15, 23, 42, 0.55) 100%
   );
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease;
 
   ${MovieCardContainer}:hover & {
     opacity: 1;
@@ -47,21 +47,22 @@ export const MovieOverlay = styled.div`
 `;
 
 export const MovieInfo = styled.div`
-  padding: 1rem;
+  padding: 16px 16px 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 6px;
 `;
 
 export const MovieTitle = styled.h3`
   font-size: 1rem;
   margin: 0;
-  color: white;
+  font-weight: 600;
+  color: #111827;
 `;
 
 export const MovieYear = styled.p`
-  color: #999;
-  font-size: 0.9rem;
   margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
 `;
