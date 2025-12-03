@@ -1,26 +1,34 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: ${({ theme }) => theme.background};
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+`;
 
 export const AppContainer = styled.div`
-  text-align: center;
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const AppHeader = styled.header`
-  background-color: #282c34;
-  padding: 20px;
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
 `;
 
 export const AppLink = styled.a`
-  color: #61dafb;
+  color: #3b82f6;
   text-decoration: none;
 
   &:hover {
-    color: #21a8f0;
+    text-decoration: underline;
   }
 `;
