@@ -1,19 +1,19 @@
-// src/App.js
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import PopularMovies from './features/movies/PopularMovies';
-import { AppContainer, AppHeader, AppLink } from './styledGlobals';
+import { AppContainer, AppHeader, AppLink, GlobalStyle } from './styledGlobals';
 import { lightTheme, darkTheme } from './theme';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
-  const toggleTheme = () => setIsDarkMode((prev) => !prev);
+  const toggleTheme = () => setIsDarkMode(prev => !prev);
 
   const currentTheme = isDarkMode ? darkTheme : lightTheme;
 
   return (
     <ThemeProvider theme={currentTheme}>
+      <GlobalStyle />
       <AppContainer>
         <AppHeader>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

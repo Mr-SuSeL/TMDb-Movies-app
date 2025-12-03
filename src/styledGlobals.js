@@ -1,5 +1,16 @@
-// src/styledGlobals.js
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: ${({ theme }) => theme.background};
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+`;
 
 export const AppContainer = styled.div`
   min-height: 100vh;
@@ -8,9 +19,9 @@ export const AppContainer = styled.div`
 `;
 
 export const AppHeader = styled.header`
-  max-width: 1200px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: 24px 16px 40px;
 `;
 
 export const AppLink = styled.a`
