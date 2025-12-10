@@ -1,23 +1,19 @@
-import React from 'react';
-import { AppContainer, AppHeader, AppLink } from './styledGlobals';
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import { AppContainer, GlobalStyle } from "./GlobalStyle.js";
+import { Header } from "./common/Navigation/Header";
+import { theme } from "./theme";
 
 function App() {
   return (
-    <AppContainer>
-      <AppHeader>
-        <h1>TMDb Movies App</h1>
-        <p>Projekt grupowy - YouCode</p>
-        <p>Popularne filmy wkrótce...</p>
-        <AppLink
-          href="https://www.themoviedb.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by TMDB API
-        </AppLink>
-      </AppHeader>
-    </AppContainer>
+    <ThemeProvider theme={theme}>
+      <AppContainer>
+        <GlobalStyle />
+        <Header />
+      </AppContainer>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
