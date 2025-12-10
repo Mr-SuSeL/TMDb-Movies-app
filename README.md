@@ -1,50 +1,114 @@
 # TMDb Movies App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TMDb Movies App is a responsive movie browser built as a group project during the YouCode programming school.  
+The application uses the [The Movie Database (TMDB) API](https://www.themoviedb.org/) to fetch and display information about popular movies.
 
-It is a group project created as part of the YouCode programming school. The application uses the [The Movie Database (TMDB) API](https://www.themoviedb.org/) to fetch and display information about popular movies.
+Live demo: https://mr-susel.github.io/TMDb-Movies-app/
 
-The app is built with React, uses Redux Toolkit for state management, styled-components for styling, and supports deployment on GitHub Pages.
+---
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Browse popular movies from TMDB with live data
+- Responsive grid layout (1 / 2 / 3 / 4 cards depending on screen size)
+- Light / dark theme switch
+- Movie cards with hover effects and posters from TMDB CDN
+- Global state management with Redux Toolkit
+- Side effects and API calls handled with Redux‑Saga
+- Styled with styled-components, theme‑aware (light/dark)
+- Deployed automatically to GitHub Pages
+
+---
+
+## Tech stack
+
+- React (Create React App)
+- Redux Toolkit
+- Redux‑Saga
+- React‑Redux
+- styled-components
+- TMDB REST API
+- GitHub Pages
+
+---
+
+## Getting started
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- npm
+
+### Installation
+
+```powershell
+git clone https://github.com/mr-susel/TMDb-Movies-app.git
+
+cd TMDb-Movies-app
+npm install
+```
+
+
+### Environment variables
+
+Create a `.env` file in the project root:
+```javascript
+REACT_APP_TMDB_API_KEY=your_tmdb_api_key_here
+```
+
+You can generate an API key in your TMDB account settings.
+
+---
+
+## Scripts
+
+All commands are run from the project root.
 
 ### `npm start`
 
 Runs the app in development mode.  
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.  
-You may also see any lint errors in the console.
+Open http://localhost:3000 to view it in the browser.  
+The page reloads automatically on file changes and shows lint/build errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.  
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the test runner in watch mode.  
+(You can extend this section later when tests are added.)
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.  
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.  
-Your app is ready to be deployed!
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and medium deployments, and you shouldn't feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Builds the app for production into the `build` folder.  
+The output is optimized, minified and ready to deploy.
 
 ### `npm run deploy`
 
 Builds the app and deploys it to GitHub Pages.  
-Make sure your `package.json` contains:
+`package.json` contains the `homepage` field and `predeploy/deploy` scripts configured for:
 
-- `"homepage": "https://mr-susel.github.io/TMDb-Movies-app/"`
-- scripts:  
+```javascript
+"homepage": "https://mr-susel.github.io/TMDb-Movies-app/"
+```
+
+
+---
+
+## Architecture overview
+
+- `src/features/movies`
+  - domain logic for movies (components, API helpers, views)
+- `src/store/slices/moviesSlice.js`
+  - Redux Toolkit slice for movies state (popular movies, loading, errors)
+- `src/store/sagas/moviesSaga.js`
+  - Redux‑Saga side effects (calling TMDB API, handling success/error)
+- `src/store/store.js`
+  - store configuration with saga middleware
+- `src/styledGlobals.js` and `src/theme.js`
+  - global layout components and light/dark theme tokens
+
+---
+
+## Credits
+
+- Data: [The Movie Database (TMDB)](https://www.themoviedb.org/)
+- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+- Built as part of the YouCode programming school group project
