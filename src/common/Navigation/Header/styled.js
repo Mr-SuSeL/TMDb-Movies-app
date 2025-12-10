@@ -5,11 +5,12 @@ import { ReactComponent as WebsiteLogo } from "../../../assets/icon-video.svg";
 
 export const StyledHeader = styled.header`
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* było flex-start */
   justify-content: space-between;
+  gap: 16px;
   background: ${({ theme }) => theme.color.black};
   width: 100%;
-  padding: 0 16px;
+  padding: 12px 16px;
   box-sizing: border-box;
   flex-wrap: wrap; /* pozwala elementom spaść do kolejnego rzędu */
 
@@ -22,7 +23,7 @@ export const LeftSection = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 20px 0;
+  margin: 0; /* było 20px 0 */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin: 12px auto 8px auto;
@@ -61,7 +62,7 @@ export const StyledList = styled.ul`
   gap: 10px;
   list-style: none;
   padding: 0;
-  margin: 23px 0 0 0;
+  margin: 0; /* było 23px 0 0 0 */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin: 8px auto;
@@ -111,7 +112,6 @@ export const SearchWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.divider};
   border-radius: 33px;
   padding: 0 24px;
-  margin-top: 23px;
   margin-left: auto;
   margin-right: 16px;
 

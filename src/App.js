@@ -1,10 +1,10 @@
-// src/App.js
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { AppContainer, GlobalStyle } from "./GlobalStyle";
+import { AppContainer, GlobalStyle } from "./styledGlobals";
 import { Header } from "./common/Navigation/Header";
 import PopularMovies from "./features/movies/PopularMovies";
 import { ThemeToggle } from "./common/ThemeToggle";
+import { PageContainer } from "./common/Layout/PageContainer";
 import { lightTheme, darkTheme } from "./theme";
 
 function App() {
@@ -17,8 +17,10 @@ function App() {
       <GlobalStyle />
       <AppContainer>
         <Header />
-        <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
-        <PopularMovies />
+        <PageContainer>
+          <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
+          <PopularMovies />
+        </PageContainer>
       </AppContainer>
     </ThemeProvider>
   );
