@@ -8,9 +8,9 @@ const base = {
     divider: "#E4E6F0",
   },
   breakpoints: {
-    desktop: "1024px",
-    tablet: "768px",
-    mobile: "480px",
+  mobile: "640px",
+  tablet: "1024px",
+  desktop: "1280px"
   },
 };
 
