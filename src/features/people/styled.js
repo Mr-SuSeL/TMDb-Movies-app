@@ -12,7 +12,7 @@ export const CardRoot = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: ${({ theme }) => theme.colors.white}; 
+    background: #ffffff;
     box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5); 
     padding: 16px;
     border-radius: 5px;
@@ -28,6 +28,7 @@ export const ProfileImageWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #E4E6F0;
     
     & img {
         width: 100%;
@@ -38,7 +39,6 @@ export const ProfileImageWrapper = styled.div`
     & svg {
         width: 100%;
         height: 100%;
-        background-color: #E4E6F0; 
         
         & path {
             fill: #B0B0B0; 
