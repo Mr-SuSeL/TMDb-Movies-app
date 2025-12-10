@@ -8,31 +8,23 @@ export const StyledHeader = styled.header`
   align-items: flex-start;
   justify-content: space-between;
   background: ${({ theme }) => theme.color.black};
-  height: 94px;
   width: 100%;
-  padding: 0;
+  padding: 0 16px;
   box-sizing: border-box;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* pozwala elementom spaść do kolejnego rzędu */
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    justify-content: center;
+  }
 `;
 
 export const LeftSection = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: 297.58px;
-  margin-top: 35.1px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-left: 50px;
-    margin-top: 20px;
-  }
+  margin: 20px 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin: 18px auto 8px auto;
-    justify-content: center;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin: 12px auto 8px auto;
     justify-content: center;
   }
@@ -120,20 +112,21 @@ export const SearchWrapper = styled.div`
   border-radius: 33px;
   padding: 0 24px;
   margin-top: 23px;
-  margin-right: 52px;
+  margin-left: auto;
+  margin-right: 16px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-right: 40px;
+    margin-right: 16px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     width: 90%;
-    margin: 8px auto 0 auto;
+    max-width: 500px;
+    margin: 8px auto 12px auto; /* centracja w obrębie headera */
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 95%;
-    margin: 8px auto 0 auto;
   }
 `;
 
