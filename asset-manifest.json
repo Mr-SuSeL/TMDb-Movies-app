@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.js": "/TMDb-Movies-app/static/js/main.33d6a064.js",
+    "main.js": "/TMDb-Movies-app/static/js/main.017b69a1.js",
+    "static/media/icon-video.svg": "/TMDb-Movies-app/static/media/icon-video.122c503ec55a6a9b28b59944d95d6df1.svg",
     "index.html": "/TMDb-Movies-app/index.html",
-    "main.33d6a064.js.map": "/TMDb-Movies-app/static/js/main.33d6a064.js.map"
+    "static/media/icon-search.svg": "/TMDb-Movies-app/static/media/icon-search.9d6836652abbf49d9b67c1bd3fa9a6e3.svg",
+    "main.017b69a1.js.map": "/TMDb-Movies-app/static/js/main.017b69a1.js.map"
   },
   "entrypoints": [
-    "static/js/main.33d6a064.js"
+    "static/js/main.017b69a1.js"
   ]
 }
