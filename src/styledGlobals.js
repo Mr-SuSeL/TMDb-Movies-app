@@ -1,4 +1,10 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body, #root { height: 100%; margin: 0; }
+  body { font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: ${({ theme }) => theme.body || '#fff'}; color: ${({ theme }) => theme.text || '#000'}; }
+`;
 
 export const AppContainer = styled.div`
   text-align: center;
@@ -20,7 +26,5 @@ export const AppLink = styled.a`
   color: #61dafb;
   text-decoration: none;
 
-  &:hover {
-    color: #21a8f0;
-  }
+  &:hover { color: #21a8f0; }
 `;
