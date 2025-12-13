@@ -1,38 +1,28 @@
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-import React from 'react';
-import { AppContainer, AppHeader, AppLink } from './styledGlobals';
-import PopularPeople from "./features/people/PopularPeople.js";
-
-
-const PageHeader = () =>
-  <AppHeader>
-    <h1>TMDb Movies App</h1>
-    <p>Projekt grupowy - YouCode</p>
-    <p>Popularne filmy wkrótce...</p>
-    <AppLink
-      href="https://www.themoviedb.org/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Powered by TMDB API
-    </AppLink>
-  </AppHeader>
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { AppContainer, GlobalStyle } from "./styledGlobals";
+import { Header } from "./common/Navigation/Header";
+import PopularMovies from "./features/movies/PopularMovies";
+import { ThemeToggle } from "./common/ThemeToggle";
+import { PageContainer } from "./common/Layout/PageContainer";
+import { lightTheme, darkTheme } from "./theme";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
+  const currentTheme = isDarkMode ? darkTheme : lightTheme;
+
   return (
-    <HashRouter>
+    <ThemeProvider theme={currentTheme}>
+      <GlobalStyle />
       <AppContainer>
-        <PageHeader />
-        <Switch>
-          <Route path="/people">
-            <PopularPeople />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/people" />
-          </Route>
-        </Switch>
+        <Header />
+        <PageContainer>
+          <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
+          <PopularMovies />
+        </PageContainer>
       </AppContainer>
-    </HashRouter>
+    </ThemeProvider>
   );
 }
 
