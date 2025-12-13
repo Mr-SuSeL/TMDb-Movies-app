@@ -40,4 +40,17 @@ export const darkTheme = {
     },
 };
 
-export default lightTheme;
+// Add top-level convenience props for older components expecting theme.body/theme.text
+const enrich = (theme) => ({
+    ...theme,
+    body: theme.colors?.background || '#fff',
+    text: theme.colors?.text || '#000',
+    toggleBorder: theme.colors?.accent || '#ccc',
+    headerBg: theme.colors?.accent || '#fff',
+    tileBackground: theme.colors?.tileBackground || '#fff',
+});
+
+export default enrich(lightTheme);
+
+export const enrichedLightTheme = enrich(lightTheme);
+export const enrichedDarkTheme = enrich(darkTheme);
