@@ -1,3 +1,18 @@
+export const lightTheme = {
+  body: '#ffffff',
+  text: '#121212',
+  toggleBorder: '#FFF',
+  background: '#363537',
+};
+
+export const darkTheme = {
+  body: '#121212',
+  text: '#ffffff',
+  toggleBorder: '#6B8096',
+  background: '#999',
+};
+
+export default lightTheme;
 const rawColors = {
     white: '#FFFFFF',
     black: '#111827',
