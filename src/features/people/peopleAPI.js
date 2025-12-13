@@ -1,6 +1,5 @@
-export const getPopularPeople = async (page) => {
-
-    const TMDB_KEY = import.meta.env.REACT_APP_TMDB_API_KEY; 
+export const getPopularPeople = async (page = 1) => {
+    const TMDB_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
     if (!TMDB_KEY) {
         console.error("BŁĄD: Klucz TMDB nie został odczytany! Sprawdź .env.");
@@ -17,7 +16,6 @@ export const getPopularPeople = async (page) => {
     const response = await fetch(url);
 
     if (!response.ok) {
-
         console.error(`BŁĄD API! Status: ${response.status}`);
         throw new Error(`HTTP error! Status: ${response.status}`);
     }

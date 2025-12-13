@@ -9,7 +9,7 @@ import {
     setPage
 } from "../../store/slices/peopleSlice.js";
 import PersonTitle from "./PersonTitle";
-import PersonSkeletonCard from "./PersonSkeletonCard.js"; // <-- 1. Importujemy komponent szkieletu
+import PersonSkeletonCard from "./PersonSkeletonCard.js";
 import { GridContainer, LoadingContainer } from './styled.js';
 
 const PopularPeople = () => {
@@ -35,17 +35,14 @@ const PopularPeople = () => {
         }
     };
 
-    // Liczba kafelków szkieletów do wyświetlenia w stanie ładowania (np. 8 lub 12)
     const SKELETON_COUNT = 12;
     const skeletonItems = Array(SKELETON_COUNT).fill(null);
 
-    // 2. WIDOK ŁADOWANIA: RENDERUJEMY SIATKĘ SZKIELETÓW ZAMIAST TEKSTU
     if (isLoading) {
         return (
             <section>
                 <h1>Popular People</h1>
                 <GridContainer>
-                    {/* Renderujemy 12 kafelków szkieletów */}
                     {skeletonItems.map((_, index) => (
                         <PersonSkeletonCard key={index} />
                     ))}
@@ -54,9 +51,7 @@ const PopularPeople = () => {
         );
     }
 
-    // 3. WIDOK BRAKU DANYCH: Jeśli lista jest pusta po załadowaniu
     if (!peopleList || peopleList.length === 0) {
-        // Możesz tutaj wyświetlić np. komunikat o błędzie API
         return <LoadingContainer>Nie znaleziono popularnych osób.</LoadingContainer>;
     }
 
