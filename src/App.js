@@ -1,38 +1,58 @@
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import React from 'react';
-import { AppContainer, AppHeader, AppLink } from './styledGlobals';
+import { ThemeProvider } from 'styled-components';
 import PopularPeople from "./features/people/PopularPeople.js";
-
-
-const PageHeader = () =>
-  <AppHeader>
-    <h1>TMDb Movies App</h1>
-    <p>Projekt grupowy - YouCode</p>
-    <p>Popularne filmy wkrótce...</p>
-    <AppLink
-      href="https://www.themoviedb.org/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Powered by TMDB API
-    </AppLink>
-  </AppHeader>
+import {
+  GlobalStyle,
+  AppShell,
+  TopBar,
+  LogoWrap,
+  LogoMark,
+  Tabs,
+  TabButton,
+  SearchBox,
+  SearchIcon,
+  SearchInput,
+  PageContainer,
+} from './styledGlobals';
+import { lightTheme } from './theme';
 
 function App() {
   return (
-    <HashRouter>
-      <AppContainer>
-        <PageHeader />
-        <Switch>
-          <Route path="/people">
-            <PopularPeople />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/people" />
-          </Route>
-        </Switch>
-      </AppContainer>
-    </HashRouter>
+    <ThemeProvider theme={lightTheme}>
+      <HashRouter>
+        <AppShell>
+          <TopBar>
+            <LogoWrap>
+              <LogoMark />
+              <span>Przeglądarka filmów</span>
+            </LogoWrap>
+
+            <Tabs>
+              <TabButton as={Link} to="/" active={false}>KINO</TabButton>
+              <TabButton as={Link} to="/people" active={true}>LUDZIE</TabButton>
+            </Tabs>
+
+            <SearchBox>
+              <SearchIcon />
+              <SearchInput placeholder="Search for people..." />
+            </SearchBox>
+          </TopBar>
+
+          <PageContainer>
+            <Switch>
+              <Route path="/people">
+                <PopularPeople />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/people" />
+              </Route>
+            </Switch>
+          </PageContainer>
+        </AppShell>
+      </HashRouter>
+      <GlobalStyle />
+    </ThemeProvider>
   );
 }
 

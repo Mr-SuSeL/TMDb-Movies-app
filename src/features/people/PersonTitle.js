@@ -9,7 +9,9 @@ export default function PersonTitle({ person }) {
 
     const hasProfileImage = !!person.profile_path;
     const profileImageUrl = hasProfileImage
-        ? `${IMAGES_BASE_URL}${IMAGE_SIZE}${person.profile_path}`
+        ? (person.profile_path.startsWith('http')
+            ? person.profile_path
+            : `${IMAGES_BASE_URL}${IMAGE_SIZE}${person.profile_path}`)
         : null;
 
     const detailsPath = `/people/${person.id}`;
@@ -18,7 +20,7 @@ export default function PersonTitle({ person }) {
         <Link to={detailsPath} aria-label={`Zobacz szczegóły ${person.name}`}>
             <CardRoot>
                 <ProfileImageWrapper>
-                    {hasProfileImage ? (
+                    {profileImageUrl ? (
                         <img
                             src={profileImageUrl}
                             alt={person.name}

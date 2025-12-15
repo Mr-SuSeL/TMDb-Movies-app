@@ -9,8 +9,9 @@ import {
     setPage
 } from "../../store/slices/peopleSlice.js";
 import PersonTitle from "./PersonTitle";
-import PersonSkeletonCard from "./PersonSkeletonCard.js"; // <-- 1. Importujemy komponent szkieletu
-import { GridContainer, LoadingContainer } from './styled.js';
+import PersonSkeletonCard from "./PersonSkeletonCard.js";
+import { PeopleSection, Heading, GridContainer, LoadingContainer, PaginationBar, PageButton, PageInfo } from './styled.js';
+import mockPeople from './peopleMockData';
 
 const PopularPeople = () => {
     const dispatch = useDispatch();
@@ -35,40 +36,35 @@ const PopularPeople = () => {
         }
     };
 
-    // Liczba kafelków szkieletów do wyświetlenia w stanie ładowania (np. 8 lub 12)
-    const SKELETON_COUNT = 12;
+    // Wyświetlamy 20 szkieletów, aby zbliżyć się do widoku TMDB (20 wyników na stronę)
+    const SKELETON_COUNT = 20;
     const skeletonItems = Array(SKELETON_COUNT).fill(null);
 
     // 2. WIDOK ŁADOWANIA: RENDERUJEMY SIATKĘ SZKIELETÓW ZAMIAST TEKSTU
     if (isLoading) {
         return (
-            <section>
-                <h1>Popular People</h1>
+            <PeopleSection>
+                <Heading>Popularni ludzie</Heading>
                 <GridContainer>
-                    {/* Renderujemy 12 kafelków szkieletów */}
                     {skeletonItems.map((_, index) => (
                         <PersonSkeletonCard key={index} />
                     ))}
                 </GridContainer>
-            </section>
+            </PeopleSection>
         );
     }
 
-    // 3. WIDOK BRAKU DANYCH: Jeśli lista jest pusta po załadowaniu
-    if (!peopleList || peopleList.length === 0) {
-        // Możesz tutaj wyświetlić np. komunikat o błędzie API
-        return <LoadingContainer>Nie znaleziono popularnych osób.</LoadingContainer>;
-    }
-
+    // 3. WIDOK BRAKU DANYCH: fallback na mocki, by zawsze pokazać siatkę
+    const displayList = (peopleList && peopleList.length > 0) ? peopleList : mockPeople;
 
     const shouldShowPagination = totalPages > 1;
 
     return (
-        <section>
-            <h1>Popular People</h1>
+        <PeopleSection>
+            <Heading>Popularni ludzie</Heading>
 
             <GridContainer>
-                {peopleList.map(person => (
+                {displayList.map(person => (
                     <PersonTitle
                         key={person.id}
                         person={person}
@@ -77,23 +73,17 @@ const PopularPeople = () => {
             </GridContainer>
 
             {shouldShowPagination && (
-                <div style={{ textAlign: 'center', margin: '30px 0' }}>
-                    <button
-                        onClick={goToPreviousPage}
-                        disabled={currentPage === 1 || isLoading}
-                    >
-                        &lt; Poprzednia
-                    </button>
-                    <span> Strona {currentPage} z {totalPages} </span>
-                    <button
-                        onClick={goToNextPage}
-                        disabled={currentPage === totalPages || isLoading}
-                    >
-                        Następna &gt;
-                    </button>
-                </div>
+                <PaginationBar>
+                    <PageButton onClick={goToPreviousPage} disabled={currentPage === 1 || isLoading}>
+                        Poprzedni
+                    </PageButton>
+                    <PageInfo>Strona {currentPage} z {totalPages}</PageInfo>
+                    <PageButton primary onClick={goToNextPage} disabled={currentPage === totalPages || isLoading}>
+                        Następny
+                    </PageButton>
+                </PaginationBar>
             )}
-        </section>
+        </PeopleSection>
     );
 };
 
