@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { AppContainer, GlobalStyle } from "./styledGlobals";
-import { Header } from "./common/Navigation/Header";
+import Navigation from "./common/Navigation";
 import PopularMovies from "./features/movies/PopularMovies";
 import { ThemeToggle } from "./common/ThemeToggle";
 import { PageContainer } from "./common/Layout/PageContainer";
 import { lightTheme, darkTheme } from "./theme";
+
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -16,7 +17,7 @@ function App() {
     <ThemeProvider theme={currentTheme}>
       <GlobalStyle />
       <AppContainer>
-        <Header />
+        <Navigation />
         <PageContainer>
           <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
           <PopularMovies />
