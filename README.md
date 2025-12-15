@@ -2,44 +2,56 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-It is a group project created as part of the YouCode programming school. The application uses the [The Movie Database (TMDB) API](https://www.themoviedb.org/) to fetch and display information about popular movies.
+# React Application: Popular People (TMDB)
+React application showcasing popular/trending people (actors, creators) from TMDB, featuring pagination, face images, and integration via Redux Toolkit + Redux-Saga.
 
-The app is built with React, uses Redux Toolkit for state management, styled-components for styling, and supports deployment on GitHub Pages.
+## Features
+- List of "Popular People" and/or "Trending People" from TMDB
+.
+- Pagination (up to 500 pages – TMDB limit)
 
-## Available Scripts
+- Face images from the TMDB CDN (image.tmdb.org) – size w300.
 
-In the project directory, you can run:
+- Fallback to an icon when a photo is missing or the image causes an error.
 
-### `npm start`
+- Styling via styled-components
 
-Runs the app in development mode.  
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- State management: @reduxjs/toolkit + redux-saga.
 
-The page will reload when you make changes.  
-You may also see any lint errors in the console.
+ - Routing: react-router-dom.
 
-### `npm test`
+- Deploy to GitHub Pages.
 
-Launches the test runner in the interactive watch mode.  
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Environment Configuration (.env)
+Place the `.env` file in the project root directory (not in `src`). There are two authentication paths:
 
-### `npm run build`
+Preferred (TMDB v4 Bearer):
+Optionally, you can override the base API address:
+[`BASE_URL=https://api.themoviedb.org/3`]
 
-Builds the app for production to the `build` folder.  
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deploy for GitHub Pages
+in `package.json` is located:
+- `homepage`: `https://mr-susel.github.io/TMDb-Movies-app/`
+- scripts `predeploy` and `deploy`.
 
-The build is minified and the filenames include the hashes.  
-Your app is ready to be deployed!
+## Key file structure
+- API logic: [src/features/people/peopleAPI.js](src/features/people/peopleAPI.js)
+- People Saga: [src/store/saga/peopleSaga.js](src/store/saga/peopleSaga.js)
+- People Slice: [src/store/slices/peopleSlice.js](src/store/slices/peopleSlice.js)
+- List view: [src/features/people/PopularPeople.js](src/features/people/PopularPeople.js)
+- Person card: [src/features/people/PersonTitle.js](src/features/people/PersonTitle.js)
+- Global style/layout: [src/styledGlobals.js](src/styledGlobals.js)
 
-### `npm run eject`
+## Troubleshooting
+- "No results from TMDB" / empty:
+- check `.env` and restart `npm start`
+- in browser → DevTools → Network: status 401/403 indicates invalid or unloaded keys
+- No face image:
+- the `profile_path` field may be `null` in the TMDB – in that case, the NoProfile icon is displayed
+- if the image 404, the component removes `<img>` and displays the icon
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and medium deployments, and you shouldn't feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
+Educational project – no separate license. The TMDB API requires acceptance of its terms.
 
 ### `npm run deploy`
 
