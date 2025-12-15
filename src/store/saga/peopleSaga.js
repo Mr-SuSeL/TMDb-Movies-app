@@ -1,11 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchPeopleStart, fetchPeopleSuccess, fetchPeopleFailure } from '../slices/peopleSlice';
-import { getPopularPeople } from '../../features/people/peopleAPI';
+import { getTrendingPeople } from '../../features/people/peopleAPI';
 
 function* handleFetchPeople(action) {
     try {
         const page = action.payload || 1;
-        const response = yield call(getPopularPeople, page);
+        const response = yield call(getTrendingPeople, page, 'day');
         yield put(fetchPeopleSuccess(response));
     } catch (err) {
         console.error('peopleSaga error', err);

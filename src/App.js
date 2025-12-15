@@ -1,13 +1,13 @@
 import { HashRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { ReactComponent as VideoIcon } from './images/video.svg';
 import PopularPeople from "./features/people/PopularPeople.js";
 import {
   GlobalStyle,
   AppShell,
   TopBar,
   LogoWrap,
-  LogoMark,
   Tabs,
   TabButton,
   SearchBox,
@@ -24,7 +24,7 @@ function App() {
         <AppShell>
           <TopBar>
             <LogoWrap>
-              <LogoMark />
+              <VideoIcon width={32} height={32} aria-hidden="true" />
               <span>Przeglądarka filmów</span>
             </LogoWrap>
 

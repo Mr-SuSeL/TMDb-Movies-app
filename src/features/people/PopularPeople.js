@@ -11,7 +11,6 @@ import {
 import PersonTitle from "./PersonTitle";
 import PersonSkeletonCard from "./PersonSkeletonCard.js";
 import { PeopleSection, Heading, GridContainer, LoadingContainer, PaginationBar, PageButton, PageInfo } from './styled.js';
-import mockPeople from './peopleMockData';
 
 const PopularPeople = () => {
     const dispatch = useDispatch();
@@ -54,8 +53,10 @@ const PopularPeople = () => {
         );
     }
 
-    // 3. WIDOK BRAKU DANYCH: fallback na mocki, by zawsze pokazać siatkę
-    const displayList = (peopleList && peopleList.length > 0) ? peopleList : mockPeople;
+    // 3. WIDOK BRAKU DANYCH: jeśli API nie zwróciło nic
+    if (!isLoading && (!peopleList || peopleList.length === 0)) {
+        return <LoadingContainer>Brak wyników z TMDB.</LoadingContainer>;
+    }
 
     const shouldShowPagination = totalPages > 1;
 
@@ -64,7 +65,7 @@ const PopularPeople = () => {
             <Heading>Popularni ludzie</Heading>
 
             <GridContainer>
-                {displayList.map(person => (
+                {peopleList.map(person => (
                     <PersonTitle
                         key={person.id}
                         person={person}

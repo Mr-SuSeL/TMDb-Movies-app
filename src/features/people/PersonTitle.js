@@ -3,7 +3,7 @@ import { CardRoot, ProfileImageWrapper, Name } from "./styled";
 import { ReactComponent as NoProfileIcon } from '../../images/NoProfile.svg';
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/";
-const IMAGE_SIZE = "w200";
+const IMAGE_SIZE = "w300";
 
 export default function PersonTitle({ person }) {
 
@@ -24,6 +24,7 @@ export default function PersonTitle({ person }) {
                         <img
                             src={profileImageUrl}
                             alt={person.name}
+                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.remove(); }}
                         />
                     ) : (
                         <NoProfileIcon />
