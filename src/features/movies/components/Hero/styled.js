@@ -19,5 +19,16 @@ export const HeroImage = styled.div`
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  box-shadow: inset 0 0 200px 80px rgba(0, 0, 0, 0.95);
+  box-shadow:
+    inset 0 0 320px 140px ${({ theme }) => theme.color.black},
+    inset 0 0 120px 40px ${({ theme }) => theme.color.black};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    height: 260px;
+    border-radius: 20px;
+    box-shadow:
+      inset 0 0 240px 100px ${({ theme }) => theme.color.black},
+      inset 0 0 90px 30px ${({ theme }) => theme.color.black};
+  }
 `;
+
