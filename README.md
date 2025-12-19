@@ -1,5 +1,5 @@
 # TMDb Movies App
-
+![TMDb Movies App screenshot](public/screen.png)
 TMDb Movies App is a responsive movie browser built as a group project during the YouCode programming school.  
 The application uses the [The Movie Database (TMDB) API](https://www.themoviedb.org/) to fetch and display information about popular movies.
 
@@ -10,7 +10,7 @@ Live demo: https://mr-susel.github.io/TMDb-Movies-app/
 ## Features
 
 - Browse popular movies from TMDB with live data
-- Responsive grid layout (1 / 2 / 3 / 4 cards depending on screen size)
+- Responsive grid layout 
 - Light / dark theme switch
 - Movie cards with hover effects and posters from TMDB CDN
 - Global state management with Redux Toolkit
