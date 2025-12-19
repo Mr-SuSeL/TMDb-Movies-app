@@ -1,14 +1,18 @@
-import styled, { createGlobalStyle } from 'styled-components';
+// src/styledGlobals.js
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
     background-color: ${({ theme }) => theme.background};
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
   }
 
   *, *::before, *::after {
     box-sizing: border-box;
+    font-family: inherit;
   }
 `;
 
