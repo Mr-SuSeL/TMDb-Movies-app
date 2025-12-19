@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MovieCardContainer = styled.article`
-  background-color: ${({ theme }) => theme.cardBg || '#ffffff'};
+  background-color: ${({ theme }) => theme.cardBg || "#ffffff"};
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
@@ -9,6 +9,7 @@ export const MovieCardContainer = styled.article`
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
@@ -58,11 +59,11 @@ export const MovieTitle = styled.h3`
   font-size: 1rem;
   margin: 0;
   font-weight: 600;
-  color: ${({ theme }) => theme.text || '#111827'};
+  color: ${({ theme }) => theme.text || "#111827"};
 `;
 
 export const MovieYear = styled.p`
   margin: 0;
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.mutedText || '#6b7280'};
+  color: ${({ theme }) => theme.mutedText || "#6b7280"};
 `;

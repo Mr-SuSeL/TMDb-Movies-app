@@ -1,11 +1,11 @@
 // src/features/movies/PopularMovies.js
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import MovieCard from "./components/MovieCard";
-import { MoviesGrid } from "./components/MoviesGrid/styled";
+import { MoviesGrid, MovieTileLink } from "./components/MoviesGrid/styled";
 import { Pagination } from "../../common/Pagination";
 import { fetchPopularMoviesRequest } from "../../store/slices/moviesSlice";
+import { Page } from "./styled";
 
 function PopularMovies() {
   const dispatch = useDispatch();
@@ -26,20 +26,21 @@ function PopularMovies() {
   if (error) return <p>Błąd: {error}</p>;
 
   return (
-    <>
+    <Page>
       <MoviesGrid>
         {popularMovies.map((movie) => (
-          <Link key={movie.id} to={`/movie/${movie.id}`}>
+          <MovieTileLink key={movie.id} to={`/movie/${movie.id}`}>
             <MovieCard movie={movie} />
-          </Link>
+          </MovieTileLink>
         ))}
       </MoviesGrid>
+
       <Pagination
         page={page}
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
-    </>
+    </Page>
   );
 }
 

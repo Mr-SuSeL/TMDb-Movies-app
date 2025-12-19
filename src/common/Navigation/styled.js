@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.color.black};
+  padding-bottom: 12px;
 `;
 
 export const Container = styled.div`

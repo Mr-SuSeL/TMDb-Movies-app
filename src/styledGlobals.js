@@ -2,18 +2,24 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: ${({ theme }) => theme.background};
-    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
+  html {
+    box-sizing: border-box;
   }
 
   *, *::before, *::after {
-    box-sizing: border-box;
+    box-sizing: inherit;
     font-family: inherit;
   }
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  font-family: "Poppins", sans-serif;
+}
+
 `;
 
 export const AppContainer = styled.div`
