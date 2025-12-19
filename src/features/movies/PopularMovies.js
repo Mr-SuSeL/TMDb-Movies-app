@@ -1,6 +1,7 @@
-
+// src/features/movies/PopularMovies.js
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import MovieCard from "./components/MovieCard";
 import { MoviesGrid } from "./components/MoviesGrid/styled";
 import { Pagination } from "../../common/Pagination";
@@ -28,7 +29,9 @@ function PopularMovies() {
     <>
       <MoviesGrid>
         {popularMovies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <Link key={movie.id} to={`/movie/${movie.id}`}>
+            <MovieCard movie={movie} />
+          </Link>
         ))}
       </MoviesGrid>
       <Pagination

@@ -1,9 +1,11 @@
 // src/App.js
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { Routes, Route } from "react-router-dom";
 import { AppContainer, GlobalStyle } from "./styledGlobals";
 import Navigation from "./common/Navigation";
 import PopularMovies from "./features/movies/PopularMovies";
+import MovieDetails from "./features/movies/MovieDetails";
 import { PageContainer } from "./common/Layout/PageContainer";
 import { lightTheme, darkTheme } from "./theme";
 
@@ -21,7 +23,12 @@ function App() {
           onToggleTheme={toggleTheme}
         />
         <PageContainer>
-          <PopularMovies />
+          <Routes>
+            <Route path="/" element={<PopularMovies />} />
+            <Route path="/movies" element={<PopularMovies />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="*" element={<PopularMovies />} /> 
+          </Routes>
         </PageContainer>
       </AppContainer>
     </ThemeProvider>
