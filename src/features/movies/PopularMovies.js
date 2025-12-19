@@ -1,4 +1,4 @@
-// src/features/movies/PopularMovies.js
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./components/MovieCard";

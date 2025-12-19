@@ -18,12 +18,15 @@ const moviesSlice = createSlice({
         state.page = action.payload.page;
       }
     },
+
     fetchPopularMoviesSuccess: (state, action) => {
       state.loading = false;
-      state.popularMovies = action.payload.results;     // TMDB → results [web:59]
-      state.page = action.payload.page;                 // TMDB → page [web:59]
-      state.totalPages = action.payload.total_pages;    // TMDB → total_pages [web:59]
+      state.popularMovies = action.payload.results;
+      state.page = action.payload.page;
+      const apiTotal = action.payload.total_pages;
+      state.totalPages = Math.min(apiTotal, 500);
     },
+
     fetchPopularMoviesFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
