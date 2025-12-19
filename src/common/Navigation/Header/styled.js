@@ -1,3 +1,4 @@
+// src/common/Navigation/Header/styled.js
 import styled from "styled-components";
 import { ReactComponent as VideoIcon } from "../../../assets/icon-video.svg";
 
@@ -6,10 +7,6 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   gap: 16px;
   height: 48px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    gap: 8px;
-  }
 `;
 
 export const LogoTitleWrapper = styled.div`
