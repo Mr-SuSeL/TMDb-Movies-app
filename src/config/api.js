@@ -1,4 +1,8 @@
+
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+
+//console.log('API_KEY loaded:', API_KEY); // Tymczasowy log - usuń później
+
 export const TMDB_CONFIG = {
   API_KEY,
   BASE_URL: 'https://api.themoviedb.org/3',
@@ -6,5 +10,7 @@ export const TMDB_CONFIG = {
   LANGUAGE: 'pl-PL',
 };
 
-export const createTMDBUrl = (endpoint) => 
-  `${TMDB_CONFIG.BASE_URL}/${endpoint}?api_key=${TMDB_CONFIG.API_KEY}&language=${TMDB_CONFIG.LANGUAGE}`;
+export const createTMDBUrl = (endpoint) => {
+  const separator = endpoint.includes('?') ? '&' : '?';
+  return `${TMDB_CONFIG.BASE_URL}/${endpoint}${separator}api_key=${TMDB_CONFIG.API_KEY}&language=${TMDB_CONFIG.LANGUAGE}`;
+};

@@ -1,41 +1,34 @@
-const rawColors = {
-    white: '#FFFFFF',
-    black: '#111827',
-    darkGray: '#1e293b',
-    mediumGray: '#6B7280',
-    lightGray: '#F5F5FA',  
-    bluePrimary: '#007bff', 
-};
-
-const commonSettings = {
-    breakpoints: {
-        mobile: '767px',
-        tablet: '1023px',
-    }
+const base = {
+  color: {
+    white: "#FFFFFF",
+    lightGray: "#F5F5FA",
+    black: "#18181B",
+    darkerGrey: "#7E839A",
+    divider: "#E4E6F0",
+    transparent: "transparent"
+  },
+  breakpoints: {
+    mobile: "640px",
+    mobileMin: "480px",
+    mobileMax: "767px",
+    tablet: "1024px",
+    desktop: "1280px",
+    largeDesktop: "1920px"
+  }
 };
 
 export const lightTheme = {
-    ...commonSettings,
-    colors: {
-        white: rawColors.white,
-        background: rawColors.lightGray, 
-        text: rawColors.black,            
-        accent: rawColors.bluePrimary,     
-        tileBackground: rawColors.white,  
-        subText: rawColors.mediumGray,    
-        skeletonBase: '#e0e0e0',      
-    },
+  ...base,
+  background: "#ffffff",
+  text: "#111827",
+  cardBg: "#ffffff"
 };
 
 export const darkTheme = {
-    ...commonSettings,
-    colors: {
-        white: rawColors.white,
-        background: rawColors.black,     
-        text: rawColors.white,          
-        accent: rawColors.bluePrimary,   
-        tileBackground: rawColors.darkGray, 
-        subText: rawColors.lightGray,     
-        skeletonBase: '#3f3f46',          
-    },
+  ...base,
+  background: "#0b1120",
+  text: "#e5e7eb",
+  cardBg: "#111827"
 };
+
+export const theme = lightTheme;

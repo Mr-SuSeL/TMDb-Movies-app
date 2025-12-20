@@ -1,60 +1,45 @@
-import styled, { createGlobalStyle } from 'styled-components';
+// src/styledGlobals.js
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  *, *::before, *::after { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: #f4f5f8;
-    color: #0f172a;
+  html {
+    box-sizing: border-box;
   }
-  a { text-decoration: none; color: inherit; }
-`;
 
-export const AppShell = styled.div`
+  *, *::before, *::after {
+    box-sizing: inherit;
+    font-family: inherit;
+  }
+
+body {
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
-  background: #f4f5f8;
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
+  font-family: "Poppins", sans-serif;
+}
+
 `;
 
-export const TopBar = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 16px 32px;
-  background: #0c0d11;
-  color: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+export const AppContainer = styled.div`
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.background};
+  color: ${({ theme }) => theme.text};
 `;
 
-export const LogoWrap = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.1px;
+export const AppHeader = styled.header`
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
 `;
 
-export const LogoMark = styled.div`
-  width: 32px;
-  height: 22px;
-  border: 2px solid #fff;
-  border-radius: 6px;
-  position: relative;
+export const AppLink = styled.a`
+  color: #3b82f6;
+  text-decoration: none;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-    border: 2px solid #fff;
-    transform: translate(-50%, -50%);
+  &:hover {
+    text-decoration: underline;
   }
 `;
 

@@ -11,7 +11,8 @@ export const store = configureStore({
     movies: moviesReducer,
     people: peopleReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(rootSaga);
