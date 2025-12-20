@@ -16,6 +16,9 @@ export const LogoTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 `;
 
 export const Logo = styled(VideoIcon)`

@@ -13,11 +13,12 @@ export const Container = styled.div`
   align-items: center;
   column-gap: 48px;
   padding: 0 40px;
-  min-height: 94px;
+  min-height: 88px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+ @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: auto auto;
     row-gap: 12px;
     padding: 16px;
+    min-height: unset;
   }
 `;
