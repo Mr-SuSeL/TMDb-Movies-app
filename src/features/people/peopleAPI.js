@@ -9,7 +9,6 @@ export const getTrendingPeople = async (page, timeWindow = "day") => {
     trendingUrl.searchParams.set("page", page);
     trendingUrl.searchParams.set("language", "pl-PL");
 
-    // Prefer v4 bearer; fall back to v3 api_key
     let response;
     if (V4_BEARER) {
         response = await fetch(trendingUrl, {
