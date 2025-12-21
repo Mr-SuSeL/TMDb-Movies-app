@@ -1,3 +1,4 @@
+// src/common/Navigation/styled.js
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -8,8 +9,11 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   max-width: 1368px;
   margin: 0 auto;
+  padding: 0 40px;
+  min-height: 94px;
+
   display: grid;
-  grid-template-columns: auto auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   column-gap: 48px;
   padding: 0 40px;

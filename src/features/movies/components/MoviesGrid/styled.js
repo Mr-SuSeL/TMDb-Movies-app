@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 export const MoviesGrid = styled.div`
   display: grid;
@@ -17,5 +18,14 @@ export const MoviesGrid = styled.div`
 
   @media (min-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+`;
+
+export const MovieTileLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
   }
 `;

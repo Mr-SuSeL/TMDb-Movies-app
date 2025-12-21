@@ -1,17 +1,21 @@
-// src/common/ThemeToggle/styled.js
 import styled from "styled-components";
 
 export const ToggleButton = styled.button`
-  padding: 8px 16px;
-  border-radius: 999px;
-  border: 1px solid #9ca3af;
-  background-color: ${({ theme }) => theme.color.black};
-  color: ${({ theme }) => theme.color.white};
+  border: none;
+  background: transparent;
   cursor: pointer;
-  margin: 16px auto;
-  display: block;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 4px 8px;
+  border-radius: 999px;
+
+  font-size: 18px;
+  line-height: 1;
+  color: ${({ theme }) => theme.color.white};
+  &:hover {
+    color: ${({ theme }) => theme.color.darkerGrey};
   }
 `;
