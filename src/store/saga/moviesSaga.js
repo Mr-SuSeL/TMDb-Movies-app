@@ -9,8 +9,14 @@ import {
   fetchMovieDetailsFailure,
 } from "../slices/moviesSlice";
 
-function fetchPopularMoviesApi(page) {
-  const url = createTMDBUrl(`movie/popular?page=${page}`);
+// Zaktualizowana funkcja API obsługująca zarówno listę popularnych, jak i wyszukiwanie
+function fetchMoviesApi(page, query) {
+  const endpoint = query 
+    ? `search/movie?query=${query}&page=${page}` 
+    : `movie/popular?page=${page}`;
+    
+  const url = createTMDBUrl(endpoint);
+  
   return fetch(url).then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -21,16 +27,18 @@ function fetchPopularMoviesApi(page) {
 
 function* fetchPopularMoviesSaga(action) {
   try {
-    const page = action.payload?.page || 1;
-    const data = yield call(fetchPopularMoviesApi, page);
+    // Destrukturyzacja parametrów z payloadu (zakładamy, że wysyłamy teraz obiekt)
+    const { page, query } = action.payload || { page: 1, query: "" };
     
-    yield delay(500);
+    const data = yield call(fetchMoviesApi, page, query);
+    
+    yield delay(500); // Twój Loader UX
     
     yield put(fetchPopularMoviesSuccess(data));
   } catch (error) {
     yield put(
       fetchPopularMoviesFailure(
-        error.message || "Failed to fetch popular movies"
+        error.message || "Failed to fetch movies"
       )
     );
   }

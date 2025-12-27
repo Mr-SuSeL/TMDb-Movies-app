@@ -1,4 +1,3 @@
-// src/store/slices/moviesSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const moviesSlice = createSlice({
@@ -9,11 +8,11 @@ const moviesSlice = createSlice({
     error: null,
     page: 1,
     totalPages: 1,
+    totalResults: 0, // Nowe pole
     movieDetails: null,
     movieCredits: null,
   },
   reducers: {
-    // POPULAR MOVIES
     fetchPopularMoviesRequest: (state, action) => {
       state.loading = true;
       state.error = null;
@@ -26,6 +25,7 @@ const moviesSlice = createSlice({
       state.loading = false;
       state.popularMovies = action.payload.results;
       state.page = action.payload.page;
+      state.totalResults = action.payload.total_results; // Zapisujemy liczbę wyników
       const apiTotal = action.payload.total_pages;
       state.totalPages = Math.min(apiTotal, 500);
     },
@@ -41,9 +41,9 @@ const moviesSlice = createSlice({
       state.error = null;
       state.page = 1;
       state.totalPages = 1;
+      state.totalResults = 0;
     },
 
-    // MOVIE DETAILS
     fetchMovieDetailsRequest: (state) => {
       state.loading = true;
       state.error = null;
