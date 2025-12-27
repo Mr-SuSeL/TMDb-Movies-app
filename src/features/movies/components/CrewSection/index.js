@@ -9,7 +9,7 @@ import {
   PersonInfo,
   PersonName,
   PersonRole,
-} from "./styled";
+} from "../CastSection/styled";
 
 export const CrewSection = ({ crew }) => {
   if (!crew || crew.length === 0) return null;
@@ -18,7 +18,7 @@ export const CrewSection = ({ crew }) => {
     <Section>
       <SectionTitle>Crew</SectionTitle>
       <PeopleGrid>
-        {crew.slice(0, 12).map((person) => {
+        {crew.map((person) => {
           const profileUrl = person.profile_path
             ? `${TMDB_CONFIG.IMAGE_BASE_URL}/w185${person.profile_path}`
             : null;
@@ -26,7 +26,13 @@ export const CrewSection = ({ crew }) => {
           return (
             <PersonCard key={person.credit_id}>
               <PersonPhoto>
-                {profileUrl && <img src={profileUrl} alt={person.name} />}
+                {profileUrl ? (
+                  <img src={profileUrl} alt={person.name} />
+                ) : (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '40px' }}>
+                     👤
+                  </div>
+                )}
               </PersonPhoto>
               <PersonInfo>
                 <PersonName>{person.name}</PersonName>
