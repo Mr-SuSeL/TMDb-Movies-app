@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/TMDb-Movies-app/static/js/main.15d561dd.js",
+    "main.js": "/TMDb-Movies-app/static/js/main.94b2b5ea.js",
     "static/media/noResults.svg": "/TMDb-Movies-app/static/media/noResults.d286a671797f1244d0ba26eeaa04cf6f.svg",
     "static/media/star.svg": "/TMDb-Movies-app/static/media/star.3190dad33798e8aacd58b6a18d42aae2.svg",
     "static/media/NoProfile.svg": "/TMDb-Movies-app/static/media/NoProfile.99bd6fb58a7149d3a5fa3b4b57f8016c.svg",
@@ -9,9 +9,9 @@
     "index.html": "/TMDb-Movies-app/index.html",
     "static/media/icon-search.svg": "/TMDb-Movies-app/static/media/icon-search.9d6836652abbf49d9b67c1bd3fa9a6e3.svg",
     "static/media/Spinner.svg": "/TMDb-Movies-app/static/media/Spinner.c5f29646f52eed97faa98a9f6f43ce08.svg",
-    "main.15d561dd.js.map": "/TMDb-Movies-app/static/js/main.15d561dd.js.map"
+    "main.94b2b5ea.js.map": "/TMDb-Movies-app/static/js/main.94b2b5ea.js.map"
   },
   "entrypoints": [
-    "static/js/main.15d561dd.js"
+    "static/js/main.94b2b5ea.js"
   ]
 }
