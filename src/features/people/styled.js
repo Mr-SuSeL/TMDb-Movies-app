@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const PeopleSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 28px;
+    width: 1368px;
+    margin: 150px auto 0;
 `;
 
 export const Heading = styled.h1`
@@ -15,8 +18,13 @@ export const Heading = styled.h1`
 
 export const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fill, 208px);
     gap: 24px;
+`;
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
 `;
 
 export const CardRoot = styled.div`
@@ -25,10 +33,13 @@ export const CardRoot = styled.div`
     align-items: center;
     text-align: center;
     background: #ffffff;
-    box-shadow: 0px 10px 30px rgba(17, 24, 39, 0.12);
-    padding: 14px 14px 18px;
-    border-radius: 12px;
-    height: 100%;
+    box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
+    padding: 16px;
+    gap: 12px;
+    border-radius: 5px;
+    width: 208px;
+    height: 339px;
+    box-sizing: border-box;
     transition: transform 0.18s ease, box-shadow 0.18s ease;
 
     &:hover {
@@ -38,10 +49,9 @@ export const CardRoot = styled.div`
 `;
 
 export const ProfileImageWrapper = styled.div`
-    width: 100%;
-    aspect-ratio: 2/3;
-    border-radius: 10px;
-    margin-bottom: 14px;
+    width: 177px;
+    height: 264px;
+    border-radius: 5px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -65,11 +75,15 @@ export const ProfileImageWrapper = styled.div`
 `;
 
 export const Name = styled.p`
-    font-size: 18px;
-    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 130%;
+    text-align: center;
+    color: #18181B;
     margin: 0;
-    line-height: 1.3;
-    color: #0f172a;
+    max-width: 176px;
+    text-decoration: none;
 `;
 
 export const LoadingContainer = styled.div`

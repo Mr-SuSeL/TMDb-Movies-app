@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { CardRoot, ProfileImageWrapper, Name } from "./styled";
+import { StyledLink, CardRoot, ProfileImageWrapper, Name } from "./styled";
 import { ReactComponent as NoProfileIcon } from '../../images/NoProfile.svg';
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/";
@@ -17,7 +16,7 @@ export default function PersonTitle({ person }) {
     const detailsPath = `/people/${person.id}`;
 
     return (
-        <Link to={detailsPath} aria-label={`Zobacz szczegóły ${person.name}`}>
+        <StyledLink to={detailsPath} aria-label={`Zobacz szczegóły ${person.name}`}>
             <CardRoot>
                 <ProfileImageWrapper>
                     {profileImageUrl ? (
@@ -32,6 +31,6 @@ export default function PersonTitle({ person }) {
                 </ProfileImageWrapper>
                 <Name>{person.name}</Name>
             </CardRoot>
-        </Link>
+        </StyledLink>
     );
 }
