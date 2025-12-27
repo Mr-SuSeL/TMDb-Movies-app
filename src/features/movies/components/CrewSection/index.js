@@ -1,5 +1,6 @@
 import React from "react";
 import { TMDB_CONFIG } from "../../../../config/api";
+import profilePlaceholder from "../../../../images/Picture.svg";
 import {
   Section,
   SectionTitle,
@@ -21,18 +22,15 @@ export const CrewSection = ({ crew }) => {
         {crew.map((person) => {
           const profileUrl = person.profile_path
             ? `${TMDB_CONFIG.IMAGE_BASE_URL}/w185${person.profile_path}`
-            : null;
+            : profilePlaceholder;
 
           return (
             <PersonCard key={person.credit_id}>
               <PersonPhoto>
-                {profileUrl ? (
-                  <img src={profileUrl} alt={person.name} />
-                ) : (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '40px' }}>
-                     👤
-                  </div>
-                )}
+                <img 
+                  src={profileUrl} 
+                  alt={person.name} 
+                />
               </PersonPhoto>
               <PersonInfo>
                 <PersonName>{person.name}</PersonName>
