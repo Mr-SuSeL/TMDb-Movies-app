@@ -7,6 +7,12 @@ export const PeopleSection = styled.section`
     gap: 28px;
     width: 1368px;
     margin: 150px auto 0;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+        width: calc(100% - 32px);
+        margin: 24px auto 0;
+        padding: 0;
+    }
 `;
 
 export const Heading = styled.h1`
@@ -20,6 +26,11 @@ export const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, 208px);
     gap: 24px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
 `;
 
 export const StyledLink = styled(Link)`
@@ -45,6 +56,14 @@ export const CardRoot = styled.div`
     &:hover {
         transform: translateY(-4px);
         box-shadow: 0px 14px 34px rgba(17, 24, 39, 0.16);
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 136 / 245;
+        padding: 8px;
+        gap: 8px;
     }
 `;
 
@@ -76,6 +95,12 @@ export const ProfileImageWrapper = styled.div`
             fill: none;
         }
     }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 120 / 178;
+    }
 `;
 
 export const Name = styled.p`
@@ -88,6 +113,11 @@ export const Name = styled.p`
     margin: 0;
     max-width: 176px;
     text-decoration: none;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+        font-size: 14px;
+        max-width: 120px;
+    }
 `;
 
 export const LoadingContainer = styled.div`

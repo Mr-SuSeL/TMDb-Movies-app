@@ -13,7 +13,7 @@ export default function PersonTitle({ person }) {
             : `${IMAGES_BASE_URL}${IMAGE_SIZE}${person.profile_path}`)
         : null;
 
-    const detailsPath = `/people/${person.id}`;
+    const detailsPath = `/person/${person.id}`;
 
     return (
         <StyledLink to={detailsPath} aria-label={`Zobacz szczegóły ${person.name}`}>
