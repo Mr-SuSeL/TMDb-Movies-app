@@ -1,69 +1,143 @@
 import styled from "styled-components";
 
 export const MovieCardContainer = styled.article`
-  background-color: ${({ theme }) => theme.cardBg || "#ffffff"};
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  background-color: ${({ theme }) => theme.color.white};
+  padding: 16px;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
-  cursor: pointer;
+  transition: transform 0.2s ease;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
+    transform: scale(1.02);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: row;
+    gap: 16px;
   }
 `;
 
-export const MoviePoster = styled.div`
-  position: relative;
+export const MoviePoster = styled.img`
   width: 100%;
   aspect-ratio: 2 / 3;
-  overflow: hidden;
+  border-radius: 5px;
+  object-fit: cover;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-`;
-
-export const MovieOverlay = styled.div`
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0) 40%,
-    rgba(15, 23, 42, 0.55) 100%
-  ); 
-  opacity: 0;
-  transition: opacity 0.2s ease;
-
-  ${MovieCardContainer}:hover & {
-    opacity: 1;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 114px;
+    height: 169px;
   }
 `;
 
 export const MovieInfo = styled.div`
-  padding: 16px 16px 20px;
+  margin-top: 16px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: space-between;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin-top: 0;
+  }
 `;
 
 export const MovieTitle = styled.h3`
-  font-size: 1rem;
+  font-size: 22px;
+  font-weight: 500;
   margin: 0;
-  font-weight: 600;
-  color: ${({ theme }) => theme.text || "#111827"};
+  line-height: 1.3;
+  color: ${({ theme }) => theme.color.woodsmoke};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 16px;
+  }
 `;
 
 export const MovieYear = styled.p`
-  margin: 0;
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.mutedText || "#6b7280"};
+  margin: 8px 0;
+  font-size: 16px;
+  color: ${({ theme }) => theme.color.waterloo};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 13px;
+    margin: 4px 0;
+  }
+`;
+
+export const TagsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin: 4px 0;
+  }
+`;
+
+export const Tag = styled.span`
+  background: ${({ theme }) => theme.color.mystic || "#E4E6F0"}; /* Dodany kolor zapasowy */
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1;
+  color: ${({ theme }) => theme.color.woodsmoke};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+`;
+
+export const RatingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 10px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: 8px;
+    padding-top: 8px;
+  }
+`;
+
+export const Star = styled.div`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.color.candlelight};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 16px;
+    height: 16px;
+  }
+
+  svg {
+      width: 100%;
+      height: auto;
+  }
+`;
+
+export const Rate = styled.span`
+  font-weight: 600;
+  font-size: 16px;
+  color: ${({ theme }) => theme.color.woodsmoke};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 13px;
+  }
+`;
+
+export const Votes = styled.span`
+  color: ${({ theme }) => theme.color.waterloo};
+  font-size: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 13px;
+  }
 `;
