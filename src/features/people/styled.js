@@ -65,11 +65,15 @@ export const ProfileImageWrapper = styled.div`
     }
 
     & svg {
-        width: 48%;
-        height: 48%;
+        width: 60%;
+        height: 60%;
 
         & path {
-            fill: #B0B0B0;
+            fill: none;
+        }
+        
+        & ellipse {
+            fill: none;
         }
     }
 `;
