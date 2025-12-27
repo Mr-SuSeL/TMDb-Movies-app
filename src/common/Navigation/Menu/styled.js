@@ -25,9 +25,16 @@ export const NavLinkItem = styled(NavLink)`
   color: ${({ theme }) => theme.color.white};
   text-decoration: none;
   border: 1px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.color.white};
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
 
   &.active {
     border-color: ${({ theme }) => theme.color.white};
+    cursor: default;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
