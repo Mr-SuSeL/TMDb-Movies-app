@@ -15,16 +15,12 @@ export const HeroImage = styled.div`
   background-position: center;
   position: relative;
   
-  /* Efekt winiety/cienia zgodny z Twoim poprzednim kodem */
   box-shadow: 
     inset 0 0 320px 140px ${({ theme }) => theme.color.black},
     inset 0 0 120px 40px ${({ theme }) => theme.color.black};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     height: 400px;
-    box-shadow: 
-      inset 0 0 240px 100px ${({ theme }) => theme.color.black},
-      inset 0 0 90px 30px ${({ theme }) => theme.color.black};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
@@ -34,10 +30,11 @@ export const HeroImage = styled.div`
 
 export const Container = styled.div`
   margin: 0 auto;
-  padding: 0 16px;
+  max-width: 1368px;
   height: 100%;
   display: flex;
   align-items: flex-end;
+  padding: 0 16px;
 `;
 
 export const Content = styled.div`
@@ -48,7 +45,7 @@ export const Content = styled.div`
   gap: 24px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     gap: 8px;
   }
 `;
@@ -56,7 +53,6 @@ export const Content = styled.div`
 export const Title = styled.h1`
   font-size: 64px;
   font-weight: 600;
-  line-height: 1.2;
   margin: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -66,25 +62,26 @@ export const Title = styled.h1`
 
 export const RatingSection = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; // Układ pionowy: Górny rząd to ocena, dolny to głosy
   gap: 16px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    flex-direction: row;
+    flex-direction: row; // Na tablecie/mobile w jednej linii
     align-items: center;
+    gap: 8px;
   }
 `;
 
 export const ScoreSection = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline; // Wyrównanie tekstu do dołu
   gap: 8px;
 `;
 
 export const StarIcon = styled.div`
   width: 40px;
   height: 40px;
-  background-color: gold; 
+  background-color: #FCD34D; 
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
@@ -95,19 +92,27 @@ export const StarIcon = styled.div`
 
 export const Score = styled.span`
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 14px;
-    font-weight: 600;
+  }
+`;
+
+export const MaxScore = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 10px;
   }
 `;
 
 export const Votes = styled.span`
   font-size: 16px;
+  font-weight: 400;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 10px;
-    color: ${({ theme }) => theme.color.darkerGrey};
   }
 `;
