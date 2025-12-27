@@ -1,14 +1,25 @@
 import styled from "styled-components";
 
 export const MovieCardContainer = styled.article`
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.cardBg};
   padding: 16px;
   border-radius: 5px;
-  box-shadow: 0 4px 12px rgba(186, 199, 213, 0.5);
   display: flex;
   flex-direction: column;
   height: 100%;
   transition: transform 0.2s ease;
+
+  /* Dynamika cienia: jasny dla białego tła, bardzo ciemny dla Dark Mode */
+  box-shadow: ${({ theme }) => 
+    theme.cardBg === "#ffffff" 
+      ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
+      : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
+
+  /* Subtelną ramka w Dark Mode dla odcięcia kafelka od tła strony */
+  border: ${({ theme }) => 
+    theme.cardBg === "#ffffff" 
+      ? "none" 
+      : `1px solid ${theme.color.black}`};
 
   &:hover {
     transform: scale(1.02);
@@ -49,7 +60,7 @@ export const MovieTitle = styled.h3`
   font-weight: 500;
   margin: 0;
   line-height: 1.3;
-  color: ${({ theme }) => theme.color.woodsmoke};
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 16px;
@@ -59,7 +70,7 @@ export const MovieTitle = styled.h3`
 export const MovieYear = styled.p`
   margin: 8px 0;
   font-size: 16px;
-  color: ${({ theme }) => theme.color.waterloo};
+  color: ${({ theme }) => theme.color.darkerGrey};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 13px;
@@ -72,19 +83,20 @@ export const TagsWrapper = styled.div`
   flex-wrap: wrap;
   gap: 8px;
   margin: 8px 0;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    margin: 4px 0;
-  }
 `;
 
 export const Tag = styled.span`
-  background: ${({ theme }) => theme.color.mystic || "#E4E6F0"}; /* Dodany kolor zapasowy */
+  /* Tło tagu: szare dla jasnego motywu, ciemnoniebieskie/szare dla ciemnego */
+  background: ${({ theme }) => 
+    theme.cardBg === "#ffffff" ? theme.color.divider : "#2f3542"};
+  
+  /* Kolor tekstu zawsze ze zmiennej theme.text (biały w nocy) */
+  color: ${({ theme }) => theme.text};
+  
   padding: 8px 16px;
   border-radius: 5px;
   font-size: 14px;
   line-height: 1;
-  color: ${({ theme }) => theme.color.woodsmoke};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: 4px 8px;
@@ -98,11 +110,6 @@ export const RatingWrapper = styled.div`
   gap: 12px;
   margin-top: auto;
   padding-top: 10px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    gap: 8px;
-    padding-top: 8px;
-  }
 `;
 
 export const Star = styled.div`
@@ -110,7 +117,7 @@ export const Star = styled.div`
   height: 24px;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.color.candlelight};
+  color: #FCD12A;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 16px;
@@ -118,15 +125,15 @@ export const Star = styled.div`
   }
 
   svg {
-      width: 100%;
-      height: auto;
+    width: 100%;
+    height: auto;
   }
 `;
 
 export const Rate = styled.span`
   font-weight: 600;
   font-size: 16px;
-  color: ${({ theme }) => theme.color.woodsmoke};
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 13px;
@@ -134,7 +141,9 @@ export const Rate = styled.span`
 `;
 
 export const Votes = styled.span`
-  color: ${({ theme }) => theme.color.waterloo};
+  /* Kolor głosów: czarny w dzień, darkerGrey w nocy (jak w MovieHeader) */
+  color: ${({ theme }) => 
+    theme.cardBg === "#ffffff" ? theme.color.black : theme.color.darkerGrey};
   font-size: 16px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
