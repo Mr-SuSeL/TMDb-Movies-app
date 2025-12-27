@@ -4,6 +4,7 @@ export const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 432px;
+  max-width: 100%;
   height: 48px;
   background: ${({ theme }) => theme.color.white};
   border: 1px solid ${({ theme }) => theme.color.divider};
@@ -11,18 +12,30 @@ export const SearchWrapper = styled.div`
   padding: 0 24px;
   gap: 16px;
   justify-self: end;
+  min-width: 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-self: stretch;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-column: 1 / -1;
-    width: 95%;
     height: 38px;
-    margin: 12px auto;
-    justify-self: center;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  @media (max-width: 320px) {
+    height: 44px;
+    padding: 0 8px;
+    gap: 10px;
   }
 `;
 
 export const SearchInput = styled.input`
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   font-family: "Poppins", sans-serif;
@@ -31,6 +44,9 @@ export const SearchInput = styled.input`
 
   &::placeholder {
     color: ${({ theme }) => theme.color.darkerGrey};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -44,6 +60,7 @@ export const SearchIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 16px;
