@@ -1,4 +1,3 @@
-// src/features/movies/PopularMovies.js
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "./components/MovieCard";
@@ -6,6 +5,7 @@ import { MoviesGrid, MovieTileLink } from "./components/MoviesGrid/styled";
 import { Pagination } from "../../common/Pagination";
 import { fetchPopularMoviesRequest } from "../../store/slices/moviesSlice";
 import { Page } from "./styled";
+import { Loader } from "../../common/Loader";
 
 function PopularMovies() {
   const dispatch = useDispatch();
@@ -22,8 +22,13 @@ function PopularMovies() {
     dispatch(fetchPopularMoviesRequest({ page: newPage }));
   };
 
-  if (loading) return <p>Ładowanie popularnych filmów...</p>;
-  if (error) return <p>Błąd: {error}</p>;
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <p>Błąd: {error}</p>;
+  }
 
   return (
     <Page>

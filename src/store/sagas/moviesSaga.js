@@ -1,5 +1,4 @@
-// src/store/sagas/moviesSaga.js
-import { call, put, takeLatest, all } from "redux-saga/effects";
+import { call, put, takeLatest, all, delay } from "redux-saga/effects";
 import { createTMDBUrl } from "../../config/api";
 import {
   fetchPopularMoviesRequest,
@@ -9,8 +8,6 @@ import {
   fetchMovieDetailsSuccess,
   fetchMovieDetailsFailure,
 } from "../slices/moviesSlice";
-
-// POPULAR MOVIES
 
 function fetchPopularMoviesApi(page) {
   const url = createTMDBUrl(`movie/popular?page=${page}`);
@@ -26,6 +23,9 @@ function* fetchPopularMoviesSaga(action) {
   try {
     const page = action.payload?.page || 1;
     const data = yield call(fetchPopularMoviesApi, page);
+    
+    yield delay(500);
+    
     yield put(fetchPopularMoviesSuccess(data));
   } catch (error) {
     yield put(
@@ -35,8 +35,6 @@ function* fetchPopularMoviesSaga(action) {
     );
   }
 }
-
-// MOVIE DETAILS
 
 function fetchMovieDetailsApi(id) {
   const detailsUrl = createTMDBUrl(`movie/${id}`);
@@ -58,6 +56,9 @@ function* fetchMovieDetailsSaga(action) {
   try {
     const id = action.payload;
     const data = yield call(fetchMovieDetailsApi, id);
+    
+    yield delay(500);
+    
     yield put(fetchMovieDetailsSuccess(data));
   } catch (error) {
     yield put(
