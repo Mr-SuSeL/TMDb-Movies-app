@@ -1,13 +1,24 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
-  background: ${({ theme }) => theme.color.white};
+  background: ${({ theme }) => theme.cardBg};
+  color: ${({ theme }) => theme.text};
   padding: 40px;
-  box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
+  /* Zmiana: Cień staje się bardzo delikatny i ciemny w trybie Dark Mode */
+  box-shadow: ${({ theme }) => 
+    theme.cardBg === "#ffffff" 
+      ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
+      : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
+  /* Opcjonalnie: dodanie bardzo subtelnego obramowania w trybie ciemnym dla lepszego odcięcia */
+  border: ${({ theme }) => 
+    theme.cardBg === "#ffffff" 
+      ? "none" 
+      : `1px solid ${theme.color.black}`};
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 40px;
   margin-top: 64px;
+  border-radius: 5px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 16px;
@@ -39,6 +50,7 @@ export const Title = styled.h2`
   font-weight: 600;
   font-size: 36px;
   margin: 0;
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 16px;
@@ -47,6 +59,7 @@ export const Title = styled.h2`
 
 export const Year = styled.span`
   font-size: 22px;
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 13px;
@@ -71,7 +84,7 @@ export const Label = styled.span`
 `;
 
 export const Text = styled.span`
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const Tags = styled.ul`
@@ -88,7 +101,8 @@ export const Tags = styled.ul`
 `;
 
 export const Tag = styled.li`
-  background: ${({ theme }) => theme.color.divider};
+  background: ${({ theme }) => theme.cardBg === "#ffffff" ? theme.color.divider : "#2f3542"};
+  color: ${({ theme }) => theme.text};
   padding: 8px 16px;
   border-radius: 5px;
   font-size: 14px;
@@ -124,6 +138,7 @@ export const StarIcon = styled.div`
 export const Score = styled.span`
   font-weight: 500;
   font-size: 22px;
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 13px;
@@ -133,15 +148,16 @@ export const Score = styled.span`
 
 export const MaxScore = styled.span`
   font-size: 14px;
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    display: none; // Ukrywamy "/ 10" na mobile jak na makiecie
+    display: none;
   }
 `;
 
 export const Votes = styled.span`
   font-size: 14px;
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.cardBg === "#ffffff" ? theme.color.black : theme.color.darkerGrey};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 13px;
@@ -153,9 +169,10 @@ export const Overview = styled.p`
   font-size: 20px;
   line-height: 1.6;
   margin: 0;
+  color: ${({ theme }) => theme.text};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     font-size: 14px;
-    grid-column: span 2; // Na mobile opis leci pod plakat
+    grid-column: span 2;
   }
 `;
