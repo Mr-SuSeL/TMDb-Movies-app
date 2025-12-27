@@ -38,7 +38,7 @@ export const MovieOverlay = styled.div`
     to bottom,
     rgba(15, 23, 42, 0) 40%,
     rgba(15, 23, 42, 0.55) 100%
-  );
+  ); 
   opacity: 0;
   transition: opacity 0.2s ease;
 

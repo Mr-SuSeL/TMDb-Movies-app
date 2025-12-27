@@ -1,4 +1,3 @@
-// src/features/movies/MovieDetails.js
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import { Hero } from "./components/Hero";
 import { MovieHeader } from "./components/MovieHeader";
 import { CastSection } from "./components/CastSection";
 import { CrewSection } from "./components/CrewSection";
+import { Loader } from "../../common/Loader";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -23,7 +23,7 @@ function MovieDetails() {
   }, [dispatch, id]);
 
   if (loading || !movieDetails) {
-    return <p>Ładowanie szczegółów filmu...</p>;
+    return <Loader />;
   }
 
   if (error) {

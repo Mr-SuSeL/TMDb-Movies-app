@@ -1,35 +1,59 @@
 import styled from "styled-components";
 
 export const Section = styled.section`
-  margin-top: 40px;
+  margin-top: 64px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    margin-top: 21px;
+  }
 `;
 
 export const SectionTitle = styled.h2`
-  margin: 0 0 16px;
-  font-size: 20px;
+  margin: 0 0 32px;
+  font-size: 36px;
   font-weight: 600;
+  line-height: 1.2;
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
 `;
 
 export const PeopleGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
+  gap: 24px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+    gap: 16px;
+  }
 `;
 
 export const PersonCard = styled.article`
-  background-color: ${({ theme }) => theme.cardBg || "#ffffff"};
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  background-color: ${({ theme }) => theme.cardBg};
+  padding: 16px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-shadow: ${({ theme }) => 
+    theme.cardBg === "#ffffff" 
+      ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
+      : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    padding: 8px;
+  }
 `;
 
 export const PersonPhoto = styled.div`
   width: 100%;
-  aspect-ratio: 2 / 3;
-  background-color: #e5e7eb;
+  aspect-ratio: 177 / 264;
+  background-color: ${({ theme }) => theme.color.divider};
+  border-radius: 5px;
   overflow: hidden;
 
   img {
@@ -41,18 +65,34 @@ export const PersonPhoto = styled.div`
 `;
 
 export const PersonInfo = styled.div`
-  padding: 8px 10px 10px;
+  padding: 12px 0 0;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
 `;
 
 export const PersonName = styled.p`
   margin: 0;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 14px;
+  }
 `;
 
 export const PersonRole = styled.p`
-  margin: 2px 0 0;
-  font-size: 12px;
-  color: ${({ theme }) => theme.mutedText || "#6b7280"};
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5;
+  color: ${({ theme }) => theme.color.darkerGrey};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    font-size: 13px;
+  }
 `;

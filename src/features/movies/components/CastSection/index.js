@@ -1,5 +1,6 @@
 import React from "react";
 import { TMDB_CONFIG } from "../../../../config/api";
+import profilePlaceholder from "../../../../images/Picture.svg";
 import {
   Section,
   SectionTitle,
@@ -18,15 +19,18 @@ export const CastSection = ({ cast }) => {
     <Section>
       <SectionTitle>Cast</SectionTitle>
       <PeopleGrid>
-        {cast.slice(0, 12).map((person) => {
+        {cast.map((person) => {
           const profileUrl = person.profile_path
             ? `${TMDB_CONFIG.IMAGE_BASE_URL}/w185${person.profile_path}`
-            : null;
+            : profilePlaceholder;
 
           return (
-            <PersonCard key={person.cast_id || person.credit_id}>
+            <PersonCard key={person.credit_id}>
               <PersonPhoto>
-                {profileUrl && <img src={profileUrl} alt={person.name} />}
+                <img 
+                  src={profileUrl} 
+                  alt={person.name} 
+                />
               </PersonPhoto>
               <PersonInfo>
                 <PersonName>{person.name}</PersonName>
