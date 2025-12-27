@@ -1,21 +1,27 @@
-// src/features/movies/components/Hero/index.js
 import React from "react";
 import { TMDB_CONFIG } from "../../../../config/api";
-import { Wrapper, Container, HeroImage } from "./styled";
+import { Wrapper, Container, HeroImage, Content, Title, RatingSection, StarIcon, Score, Votes } from "./styled";
 
 export const Hero = ({ movie }) => {
-  if (!movie) return null;
+  if (!movie || !movie.backdrop_path) return null;
 
-  const heroPath = movie.backdrop_path || movie.poster_path;
-  if (!heroPath) return null;
-
-  const heroUrl = `${TMDB_CONFIG.IMAGE_BASE_URL}/w1280${heroPath}`;
+  const heroUrl = `${TMDB_CONFIG.IMAGE_BASE_URL}/original${movie.backdrop_path}`;
 
   return (
     <Wrapper>
-      <Container>
-        <HeroImage style={{ backgroundImage: `url(${heroUrl})` }} />
-      </Container>
+      <HeroImage style={{ backgroundImage: `url(${heroUrl})` }}>
+        <Container>
+          <Content>
+            <Title>{movie.title}</Title>
+            <RatingSection>
+              <StarIcon />
+              <Score>{movie.vote_average?.toFixed(1)}</Score>
+              <Votes>/ 10</Votes>
+            </RatingSection>
+            <Votes>{movie.vote_count} głosów</Votes>
+          </Content>
+        </Container>
+      </HeroImage>
     </Wrapper>
   );
 };
