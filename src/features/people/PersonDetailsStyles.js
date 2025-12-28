@@ -10,15 +10,12 @@ export const ProfileSection = styled.section`
     display: grid;
     grid-template-columns: 399px 1fr;
     gap: 40px;
-    background: ${({ theme }) => theme.cardBg};
+    background: #fff;
     padding: 40px;
     border-radius: 5px;
-    box-shadow: ${({ theme }) => 
-        theme.cardBg === "#ffffff" 
-            ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
-            : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
+    box-shadow: 0px 4px 12px rgba(186, 199, 213, 0.5);
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    @media (max-width: 1024px) {
         grid-template-columns: 1fr;
         padding: 16px;
         gap: 16px;
@@ -30,7 +27,7 @@ export const ProfileImageLarge = styled.div`
     height: 564px;
     border-radius: 5px;
     overflow: hidden;
-    background-color: ${({ theme }) => theme.color.divider};
+    background-color: #E4E6F0;
     display: flex;
     justify-content: center;
     align-items: center;

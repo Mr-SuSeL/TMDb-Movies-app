@@ -9,7 +9,7 @@ import {
     setPage
 } from "../../store/slices/peopleSlice.js";
 import PersonTitle from "./PersonTitle";
-import PersonSkeletonCard from "./PersonSkeletonCard.js";
+import { Loader } from "../../common/Loader";
 import { PeopleSection, Heading, GridContainer, LoadingContainer, PaginationBar, PageButton, PageInfo } from './styled.js';
 
 const PopularPeople = () => {
@@ -35,18 +35,12 @@ const PopularPeople = () => {
         }
     };
 
-    const SKELETON_COUNT = 20;
-    const skeletonItems = Array(SKELETON_COUNT).fill(null);
 
     if (isLoading) {
         return (
             <PeopleSection>
                 <Heading>Popularni ludzie</Heading>
-                <GridContainer>
-                    {skeletonItems.map((_, index) => (
-                        <PersonSkeletonCard key={index} />
-                    ))}
-                </GridContainer>
+                <Loader />
             </PeopleSection>
         );
     }

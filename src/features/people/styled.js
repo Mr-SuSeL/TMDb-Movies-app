@@ -8,7 +8,7 @@ export const PeopleSection = styled.section`
     width: 1368px;
     margin: 56px auto 0;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+    @media (max-width: 767px) {
         width: calc(100% - 32px);
         margin: 24px auto 0;
         padding: 0;
@@ -30,7 +30,7 @@ export const GridContainer = styled.div`
     grid-template-columns: repeat(auto-fill, 208px);
     gap: 24px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+    @media (max-width: 767px) {
         grid-template-columns: 1fr 1fr;
         gap: 16px;
     }

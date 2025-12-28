@@ -1,0 +1,5 @@
+Usuń te pliki:
+- src/common/ThemeToggle/index.js
+- src/common/ThemeToggle/styled.js
+
+Po usunięciu tych plików przełącznik motywu (słoneczko/księżyc) zniknie całkowicie z projektu.

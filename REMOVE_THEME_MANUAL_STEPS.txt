@@ -1,0 +1,10 @@
+Usuń/wyczyść poniższe pliki, by całkowicie pozbyć się motywów i przełącznika:
+
+1. Usuń plik: src/common/ThemeToggle/index.js
+2. Usuń plik: src/common/ThemeToggle/styled.js
+3. (Opcjonalnie) Usuń ThemeToggle z package.json jeśli był osobny wpis
+4. Usuń darkTheme, lightTheme, theme z src/theme.js jeśli nie są już nigdzie używane
+5. Wyczyść theme zależności z styledGlobals.js, features/people/styled.js, features/people/PersonDetailsStyles.js jeśli niepotrzebne
+6. Usuń nieużywane importy z Navigation, App.js, itp.
+
+Po tych krokach motywy i przełącznik będą całkowicie usunięte.
