@@ -11,18 +11,25 @@ const peopleSlice = createSlice({
     reducers: {
         fetchPeopleStart: (state, action) => {
             state.isLoading = true;
-            state.currentPage = action.payload || state.currentPage;
+            
+            // Obsługa różnych typów payloadu, aby zachować spójność currentPage
+            if (action.payload && typeof action.payload === "object") {
+                state.currentPage = action.payload.page || 1;
+            } else if (typeof action.payload === "number") {
+                state.currentPage = action.payload;
+            }
         },
         fetchPeopleSuccess: (state, action) => {
             state.peopleList = action.payload.results;
             const apiTotal = action.payload.total_pages;
+            
+            // TMDB nie pozwala na paginację powyżej 500 stron
             state.totalPages = Math.min(apiTotal, 500);
             state.isLoading = false;
         },
         setPage: (state, action) => {
             state.currentPage = action.payload;
         },
-
         fetchPeopleFailure: (state) => {
             state.isLoading = false;
         },

@@ -4,7 +4,7 @@ import MovieCard from "./components/MovieCard";
 import { MoviesGrid, MovieTileLink } from "./components/MoviesGrid/styled";
 import { Pagination } from "../../common/Pagination";
 import { fetchPopularMoviesRequest } from "../../store/slices/moviesSlice";
-import { Page } from "./styled";
+import { Page, Title } from "./styled"; // Zmiana: importujemy Title
 import { Loader } from "../../common/Loader";
 import { NoResults } from "../../common/NoResults";
 import { useQueryParameter } from "../../features/search/queryParameters";
@@ -18,9 +18,7 @@ function PopularMovies() {
   );
 
   useEffect(() => {
-
     const pageToFetch = query ? 1 : page;
-
     dispatch(fetchPopularMoviesRequest({ page: pageToFetch, query: query }));
   }, [dispatch, query, page]);
 
@@ -29,13 +27,8 @@ function PopularMovies() {
     dispatch(fetchPopularMoviesRequest({ page: newPage, query: query }));
   };
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <p>Błąd: {error}</p>;
-  }
+  if (loading) return <Loader />;
+  if (error) return <p>Błąd: {error}</p>;
 
   if (!loading && query && popularMovies.length === 0) {
     return <NoResults query={query} />;
@@ -43,11 +36,12 @@ function PopularMovies() {
 
   return (
     <Page>
-      <h2>
+      {/* Poprawka: Używamy stylizowanego Title zamiast <h2> */}
+      <Title>
         {query 
           ? `Search results for "${query}" (${totalResults})` 
-          : "Popular Movies"}
-      </h2>
+          : "Popular movies"}
+      </Title>
       
       <MoviesGrid>
         {popularMovies.map((movie) => (

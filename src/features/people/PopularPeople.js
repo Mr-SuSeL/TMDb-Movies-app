@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useQueryParameter } from "../../features/search/queryParameters";
+import { NoResults } from "../../common/NoResults";
 import {
     fetchPeopleStart,
     selectPeopleList,
@@ -14,14 +16,36 @@ import { PeopleSection, Heading, GridContainer, LoadingContainer, PaginationBar,
 
 const PopularPeople = () => {
     const dispatch = useDispatch();
+    const query = useQueryParameter("search"); // Pobieramy frazę wyszukiwania z adresu URL
     const peopleList = useSelector(selectPeopleList);
     const isLoading = useSelector(selectPeopleLoading);
     const currentPage = useSelector(selectCurrentPage);
     const totalPages = useSelector(selectTotalPages);
 
     useEffect(() => {
-        dispatch(fetchPeopleStart(currentPage));
-    }, [dispatch, currentPage]);
+        // Wysyłamy obiekt zawierający stronę oraz frazę zapytania
+        dispatch(fetchPeopleStart({ page: currentPage, query: query || "" }));
+    }, [dispatch, currentPage, query]);
+
+    // Jeśli trwa ładowanie, pokazujemy Loader z odpowiednim nagłówkiem
+    if (isLoading) {
+        return (
+            <PeopleSection>
+                <Heading>{query ? `Wyszukiwanie dla "${query}"` : "Popularni ludzie"}</Heading>
+                <Loader />
+            </PeopleSection>
+        );
+    }
+
+    // Jeśli nie ładujemy, mamy frazę zapytania i brak wyników – pokazujemy komponent NoResults
+    if (!isLoading && query && (!peopleList || peopleList.length === 0)) {
+        return <NoResults />;
+    }
+
+    // Wyświetlanie błędu w przypadku braku danych przy braku wyszukiwania
+    if (!isLoading && (!peopleList || peopleList.length === 0)) {
+        return <LoadingContainer>Brak wyników z TMDB.</LoadingContainer>;
+    }
 
     const goToNextPage = () => {
         if (currentPage < totalPages) {
@@ -35,25 +59,16 @@ const PopularPeople = () => {
         }
     };
 
-
-    if (isLoading) {
-        return (
-            <PeopleSection>
-                <Heading>Popularni ludzie</Heading>
-                <Loader />
-            </PeopleSection>
-        );
-    }
-
-    if (!isLoading && (!peopleList || peopleList.length === 0)) {
-        return <LoadingContainer>Brak wyników z TMDB.</LoadingContainer>;
-    }
-
     const shouldShowPagination = totalPages > 1;
 
     return (
         <PeopleSection>
-            <Heading>Popularni ludzie</Heading>
+            <Heading>
+                {query 
+                    ? `Wyniki wyszukiwania dla "${query}" (${peopleList.length})` 
+                    : "Popularni ludzie"
+                }
+            </Heading>
 
             <GridContainer>
                 {peopleList.map(person => (
