@@ -6,7 +6,7 @@ export const PeopleSection = styled.section`
     flex-direction: column;
     gap: 28px;
     width: 1368px;
-    margin: 150px auto 0;
+    margin: 56px auto 0;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
         width: calc(100% - 32px);
@@ -17,9 +17,12 @@ export const PeopleSection = styled.section`
 
 export const Heading = styled.h1`
     margin: 0;
-    font-size: 32px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: 0px;
     color: #0b1324;
-    letter-spacing: -0.4px;
 `;
 
 export const GridContainer = styled.div`
@@ -108,6 +111,7 @@ export const Name = styled.p`
     font-size: 22px;
     font-weight: 500;
     line-height: 130%;
+    letter-spacing: 0px;
     text-align: center;
     color: #18181B;
     margin: 0;

@@ -35,11 +35,9 @@ const PopularPeople = () => {
         }
     };
 
-    // Wyświetlamy 20 szkieletów, aby zbliżyć się do widoku TMDB (20 wyników na stronę)
     const SKELETON_COUNT = 20;
     const skeletonItems = Array(SKELETON_COUNT).fill(null);
 
-    // 2. WIDOK ŁADOWANIA: RENDERUJEMY SIATKĘ SZKIELETÓW ZAMIAST TEKSTU
     if (isLoading) {
         return (
             <PeopleSection>
@@ -53,7 +51,6 @@ const PopularPeople = () => {
         );
     }
 
-    // 3. WIDOK BRAKU DANYCH: jeśli API nie zwróciło nic
     if (!isLoading && (!peopleList || peopleList.length === 0)) {
         return <LoadingContainer>Brak wyników z TMDB.</LoadingContainer>;
     }

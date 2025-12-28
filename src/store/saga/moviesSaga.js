@@ -9,7 +9,6 @@ import {
   fetchMovieDetailsFailure,
 } from "../slices/moviesSlice";
 
-// Zaktualizowana funkcja API obsługująca zarówno listę popularnych, jak i wyszukiwanie
 function fetchMoviesApi(page, query) {
   const endpoint = query 
     ? `search/movie?query=${query}&page=${page}` 
@@ -27,7 +26,6 @@ function fetchMoviesApi(page, query) {
 
 function* fetchPopularMoviesSaga(action) {
   try {
-    // Destrukturyzacja parametrów z payloadu (zakładamy, że wysyłamy teraz obiekt)
     const { page, query } = action.payload || { page: 1, query: "" };
     
     const data = yield call(fetchMoviesApi, page, query);

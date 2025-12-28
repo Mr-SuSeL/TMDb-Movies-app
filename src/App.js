@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { Routes, Route } from "react-router-dom";
