@@ -4,15 +4,13 @@ import { Wrapper, Container } from "./styled";
 import Header from "./Header";
 import Menu from "./Menu";
 import Search from "./Search";
-import { ThemeToggle } from "../ThemeToggle";
 
-const Navigation = ({ isDarkMode, onToggleTheme }) => (
+const Navigation = () => (
   <Wrapper>
     <Container>
       <Header />
       <Menu />
       <Search />
-      <ThemeToggle isDarkMode={isDarkMode} onToggle={onToggleTheme} />
     </Container>
   </Wrapper>
 );

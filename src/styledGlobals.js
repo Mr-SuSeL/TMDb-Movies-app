@@ -1,4 +1,3 @@
-// src/styledGlobals.js
 import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -11,12 +10,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
   }
 
+
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.text};
+  background-color: #ffffff;
+  color: #111827;
   font-family: "Poppins", sans-serif;
 }
 
@@ -24,8 +24,8 @@ body {
 
 export const AppContainer = styled.div`
   min-height: 100vh;
-  background-color: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.text};
+  background-color: #ffffff;
+  color: #111827;
 `;
 
 export const AppHeader = styled.header`

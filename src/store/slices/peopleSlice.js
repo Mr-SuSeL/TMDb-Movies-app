@@ -15,7 +15,8 @@ const peopleSlice = createSlice({
         },
         fetchPeopleSuccess: (state, action) => {
             state.peopleList = action.payload.results;
-            state.totalPages = action.payload.total_pages;
+            const apiTotal = action.payload.total_pages;
+            state.totalPages = Math.min(apiTotal, 500);
             state.isLoading = false;
         },
         setPage: (state, action) => {

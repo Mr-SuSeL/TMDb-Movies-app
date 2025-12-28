@@ -6,7 +6,7 @@ import { Pagination } from "../../common/Pagination";
 import { fetchPopularMoviesRequest } from "../../store/slices/moviesSlice";
 import { Page } from "./styled";
 import { Loader } from "../../common/Loader";
-import { NoResults } from "../../common/NoResults"; // Upewnij się, że stworzyłeś ten komponent
+import { NoResults } from "../../common/NoResults";
 import { useQueryParameter } from "../../features/search/queryParameters";
 
 function PopularMovies() {
@@ -18,8 +18,7 @@ function PopularMovies() {
   );
 
   useEffect(() => {
-    // Resetujemy stronę do 1, jeśli użytkownik wpisuje nową frazę (query)
-    // Jeśli nie ma query, używamy obecnej strony z Reduxa
+
     const pageToFetch = query ? 1 : page;
 
     dispatch(fetchPopularMoviesRequest({ page: pageToFetch, query: query }));
@@ -38,7 +37,6 @@ function PopularMovies() {
     return <p>Błąd: {error}</p>;
   }
 
-  // Obsługa braku wyników wyszukiwania
   if (!loading && query && popularMovies.length === 0) {
     return <NoResults query={query} />;
   }

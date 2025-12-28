@@ -40,8 +40,7 @@ const PersonDetails = () => {
             try {
                 const apiKey = TMDB_CONFIG.API_KEY;
                 const baseUrl = TMDB_CONFIG.BASE_URL;
-                
-                // Pobierz szczegóły osoby
+
                 const personResponse = await fetch(
                     `${baseUrl}/person/${id}?api_key=${apiKey}&language=en-US`
                 );
@@ -52,8 +51,7 @@ const PersonDetails = () => {
                 
                 const personData = await personResponse.json();
                 setPerson(personData);
-                
-                // Pobierz filmy (credits)
+
                 const creditsResponse = await fetch(
                     `${baseUrl}/person/${id}/movie_credits?api_key=${apiKey}&language=en-US`
                 );
@@ -94,7 +92,6 @@ const PersonDetails = () => {
         ? `${TMDB_CONFIG.IMAGE_BASE_URL}/w500${person.profile_path}`
         : null;
 
-    // Formatowanie daty urodzenia
     const formatDate = (dateString) => {
         if (!dateString) return null;
         const [year, month, day] = dateString.split('-');

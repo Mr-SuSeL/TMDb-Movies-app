@@ -8,7 +8,7 @@ const moviesSlice = createSlice({
     error: null,
     page: 1,
     totalPages: 1,
-    totalResults: 0, // Nowe pole
+    totalResults: 0, 
     movieDetails: null,
     movieCredits: null,
   },
@@ -25,7 +25,7 @@ const moviesSlice = createSlice({
       state.loading = false;
       state.popularMovies = action.payload.results;
       state.page = action.payload.page;
-      state.totalResults = action.payload.total_results; // Zapisujemy liczbę wyników
+      state.totalResults = action.payload.total_results; 
       const apiTotal = action.payload.total_pages;
       state.totalPages = Math.min(apiTotal, 500);
     },
