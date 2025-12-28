@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const Icon = styled.svg`
+  width: 7px;
+  height: 11px;
+  flex: 0 0 auto;
+  color: ${({ $color }) => $color || "rgba(126, 131, 154, 1)"};
+
+  transform: ${({ $direction }) => ($direction === "right" ? "rotate(180deg)" : "none")};
+`;
+
 export const Wrapper = styled.div`
   margin: 40px auto 0;
   max-width: 1040px;
@@ -34,51 +43,44 @@ export const Group = styled.div`
 `;
 
 export const Button = styled.button`
-  min-width: 90px;
+  min-width: 76px;
+  height: 36px;
   padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.color.divider};
+  border-radius: 5px;
+  border: none;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
 
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
 
   background-color: ${({ $primary, disabled }) =>
-    $primary
-      ? disabled
-        ? "#bfdbfe"
-        : "#3b82f6"
-      : disabled
-      ? "#e5e7eb"
-      : "#f3f4f6"};
+  disabled
+    ? "#f3f4f6"
+    : $primary
+      ? "rgba(214, 228, 255, 1)"
+      : "rgba(228, 230, 240, 1)"};
 
-  color: ${({ $primary, disabled, theme }) =>
-    $primary
-      ? theme.color.white
-      : disabled
-      ? "#9ca3af"
-      : "#4b5563"};
+  color: ${({ $primary, disabled }) =>
+    disabled ? "#9ca3af" : $primary ? "#3b82f6" : "#4b5563"};
 
   cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
-  transition: background-color 0.15s ease, transform 0.1s ease,
-    box-shadow 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
 
   &:hover {
-    ${({ disabled }) =>
+    ${({ disabled, $primary }) =>
       !disabled &&
-      `
-      transform: translateY(-1px);
-      box-shadow: 0 4px 6px rgba(15, 23, 42, 0.12);
-    `}
+  ($primary
+    ? `background-color: rgba(214, 228, 255, 1);`
+    : `background-color: rgba(228, 230, 240, 1);`)}
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     min-width: 56px;
+    height: 32px;
     padding: 6px 10px;
     font-size: 11px;
   }
@@ -98,6 +100,10 @@ export const Info = styled.span`
 `;
 
 export const DesktopLabel = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: none;
   }
@@ -106,8 +112,11 @@ export const DesktopLabel = styled.span`
 export const MobileLabel = styled.span`
   display: none;
 
+  align-items: center;
+  gap: 8px;
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: inline;
+    display: inline-flex;
     font-size: 14px;
   }
 `;

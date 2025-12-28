@@ -10,7 +10,8 @@ import {
 } from "../../store/slices/peopleSlice.js";
 import PersonTitle from "./PersonTitle";
 import { Loader } from "../../common/Loader";
-import { PeopleSection, Heading, GridContainer, LoadingContainer, PaginationBar, PageButton, PageInfo } from './styled.js';
+import { Pagination } from "../../common/Pagination";
+import { PeopleSection, Heading, GridContainer, LoadingContainer } from './styled.js';
 
 const PopularPeople = () => {
     const dispatch = useDispatch();
@@ -23,16 +24,9 @@ const PopularPeople = () => {
         dispatch(fetchPeopleStart(currentPage));
     }, [dispatch, currentPage]);
 
-    const goToNextPage = () => {
-        if (currentPage < totalPages) {
-            dispatch(setPage(currentPage + 1));
-        }
-    };
-
-    const goToPreviousPage = () => {
-        if (currentPage > 1) {
-            dispatch(setPage(currentPage - 1));
-        }
+    const handlePageChange = (newPage) => {
+        if (newPage < 1 || newPage > totalPages) return;
+        dispatch(setPage(newPage));
     };
 
 
@@ -65,15 +59,11 @@ const PopularPeople = () => {
             </GridContainer>
 
             {shouldShowPagination && (
-                <PaginationBar>
-                    <PageButton onClick={goToPreviousPage} disabled={currentPage === 1 || isLoading}>
-                        Poprzedni
-                    </PageButton>
-                    <PageInfo>Strona {currentPage} z {totalPages}</PageInfo>
-                    <PageButton primary onClick={goToNextPage} disabled={currentPage === totalPages || isLoading}>
-                        Następny
-                    </PageButton>
-                </PaginationBar>
+                <Pagination
+                    page={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                />
             )}
         </PeopleSection>
     );
