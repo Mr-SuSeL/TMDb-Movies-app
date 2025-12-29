@@ -25,7 +25,7 @@ export const CastSection = ({ cast }) => {
             : profilePlaceholder;
 
           return (
-            <PersonCard key={person.credit_id}>
+            <PersonCard key={person.credit_id} to={`/person/${person.id}`}>
               <PersonPhoto>
                 <img 
                   src={profileUrl} 

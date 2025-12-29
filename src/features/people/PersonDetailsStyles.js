@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const DetailsContainer = styled.div`
     max-width: 1368px;
     margin: 150px auto 0;
     padding: 0 16px;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints?.tablet || "1024px"}) {
-        margin: 80px auto 0;
+    @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+        margin: 24px auto 0;
     }
 `;
 
@@ -141,13 +142,15 @@ export const MoviesGrid = styled.div`
     }
 `;
 
-export const MovieCard = styled.article`
-    background: ${({ theme }) => theme.cardBg || "#ffffff"};
+export const MovieCard = styled(Link)`
+    background: ${({ theme }) => theme.cardBg};
     border-radius: 5px;
     padding: 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    text-decoration: none;
+    color: inherit;
     box-shadow: ${({ theme }) => 
         theme.cardBg === "#ffffff" 
             ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 

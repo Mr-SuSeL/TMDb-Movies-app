@@ -6,68 +6,77 @@ import {
     fetchPeopleStart,
     selectPeopleList,
     selectPeopleLoading,
+    selectPeopleError,
     selectCurrentPage,
     selectTotalPages,
+    selectPeopleTotalResults,
     setPage
 } from "../../store/slices/peopleSlice.js";
 import PersonTitle from "./PersonTitle";
 import { Loader } from "../../common/Loader";
-import { PeopleSection, Heading, GridContainer, LoadingContainer, PaginationBar, PageButton, PageInfo } from './styled.js';
+import { Pagination } from "../../common/Pagination";
+import { PeopleSection, Heading, GridContainer, LoadingContainer } from './styled.js';
+import { useQueryParameter } from "../search/queryParameters";
+import { NoResults } from "../../common/NoResults";
 
 const PopularPeople = () => {
     const dispatch = useDispatch();
-    const query = useQueryParameter("search"); // Pobieramy frazę wyszukiwania z adresu URL
+    const query = useQueryParameter("search");
     const peopleList = useSelector(selectPeopleList);
     const isLoading = useSelector(selectPeopleLoading);
+    const error = useSelector(selectPeopleError);
     const currentPage = useSelector(selectCurrentPage);
     const totalPages = useSelector(selectTotalPages);
+    const totalResults = useSelector(selectPeopleTotalResults);
 
     useEffect(() => {
-        // Wysyłamy obiekt zawierający stronę oraz frazę zapytania
-        dispatch(fetchPeopleStart({ page: currentPage, query: query || "" }));
+        const pageToFetch = query ? 1 : currentPage;
+        dispatch(fetchPeopleStart({ page: pageToFetch, query }));
     }, [dispatch, currentPage, query]);
 
-    // Jeśli trwa ładowanie, pokazujemy Loader z odpowiednim nagłówkiem
+    const handlePageChange = (newPage) => {
+        if (newPage < 1 || newPage > totalPages) return;
+        if (query) {
+            dispatch(fetchPeopleStart({ page: newPage, query }));
+        } else {
+            dispatch(setPage(newPage));
+        }
+    };
+
+
     if (isLoading) {
         return (
             <PeopleSection>
-                <Heading>{query ? `Wyszukiwanie dla "${query}"` : "Popularni ludzie"}</Heading>
+                <Heading>
+                    {query
+                        ? `Wyniki wyszukiwania dla "${query}" (${totalResults})`
+                        : "Popularni ludzie"}
+                </Heading>
                 <Loader />
             </PeopleSection>
         );
     }
 
-    // Jeśli nie ładujemy, mamy frazę zapytania i brak wyników – pokazujemy komponent NoResults
-    if (!isLoading && query && (!peopleList || peopleList.length === 0)) {
-        return <NoResults />;
+    if (error) {
+        return <LoadingContainer>Błąd: {error}</LoadingContainer>;
     }
 
-    // Wyświetlanie błędu w przypadku braku danych przy braku wyszukiwania
+    if (!isLoading && query && (!peopleList || peopleList.length === 0)) {
+        return <NoResults query={query} />;
+    }
+
     if (!isLoading && (!peopleList || peopleList.length === 0)) {
         return <LoadingContainer>Brak wyników z TMDB.</LoadingContainer>;
     }
-
-    const goToNextPage = () => {
-        if (currentPage < totalPages) {
-            dispatch(setPage(currentPage + 1));
-        }
-    };
-
-    const goToPreviousPage = () => {
-        if (currentPage > 1) {
-            dispatch(setPage(currentPage - 1));
-        }
-    };
 
     const shouldShowPagination = totalPages > 1;
 
     return (
         <PeopleSection>
             <Heading>
-                {query 
-                    ? `Wyniki wyszukiwania dla "${query}" (${peopleList.length})` 
-                    : "Popularni ludzie"
-                }
+                {query
+                    ? `Wyniki wyszukiwania dla "${query}" (${totalResults})`
+                    : "Popularni ludzie"}
             </Heading>
 
             <GridContainer>
@@ -80,15 +89,11 @@ const PopularPeople = () => {
             </GridContainer>
 
             {shouldShowPagination && (
-                <PaginationBar>
-                    <PageButton onClick={goToPreviousPage} disabled={currentPage === 1 || isLoading}>
-                        Poprzedni
-                    </PageButton>
-                    <PageInfo>Strona {currentPage} z {totalPages}</PageInfo>
-                    <PageButton primary onClick={goToNextPage} disabled={currentPage === totalPages || isLoading}>
-                        Następny
-                    </PageButton>
-                </PaginationBar>
+                <Pagination
+                    page={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                />
             )}
         </PeopleSection>
     );

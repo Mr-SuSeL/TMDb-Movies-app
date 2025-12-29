@@ -21,10 +21,19 @@ export const Container = styled.div`
   align-items: center;
   column-gap: 48px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
-    grid-template-columns: 1fr;
-    row-gap: 24px;
-    justify-items: center;
+  & > :nth-child(2) {
+    margin-left: 32px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: auto auto;
+    row-gap: 12px;
+    padding: 16px;
+    min-height: unset;
+
+    & > :nth-child(2) {
+      margin-left: 0;
+    }
   }
 `;
 

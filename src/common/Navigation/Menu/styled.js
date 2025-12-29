@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export const Nav = styled.nav`
   display: flex;
-  column-gap: 80px;
+  column-gap: 40px;
 
   /* Zabezpieczenie: optional chaining i fallback do mobileMax */
   @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {

@@ -5,15 +5,18 @@ export const PeopleSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 28px;
-    width: 1368px;
+    max-width: 1368px;
+    width: 100%;
     margin: 56px auto 0;
+    padding: 0;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints?.largeDesktop || "1920px"}) {
-        width: calc(100% - 32px);
+    @media (max-width: 1367px) {
+        padding: 0 16px;
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
+    @media (max-width: 767px) {
         margin: 24px auto 0;
+        padding: 0 16px;
     }
 `;
 
@@ -23,21 +26,35 @@ export const Heading = styled.h1`
     font-size: 36px;
     font-weight: 600;
     line-height: 120%;
-    color: ${({ theme }) => theme.text || "#000000"};
+    letter-spacing: 0px;
+    color: #0b1324;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
+    @media (max-width: 767px) {
         font-size: 20px;
     }
 `;
 
 export const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, 208px);
+    grid-template-columns: repeat(6, 208px);
     gap: 24px;
-    justify-content: center;
+    align-items: stretch;
+    justify-content: start;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
-        grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 1367px) {
+        grid-template-columns: repeat(5, 208px);
+    }
+
+    @media (max-width: 1199px) {
+        grid-template-columns: repeat(4, 208px);
+    }
+
+    @media (max-width: 1023px) {
+        grid-template-columns: repeat(3, 208px);
+    }
+
+    @media (max-width: 767px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
     }
 `;
@@ -58,7 +75,7 @@ export const CardRoot = styled.div`
             ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
             : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
     padding: 16px;
-    gap: 12px;
+    gap: 10px;
     border-radius: 5px;
     width: 208px;
     height: 100%;
@@ -105,10 +122,28 @@ export const Name = styled.p`
     line-height: 130%;
     color: ${({ theme }) => theme.text || "#18181B"};
     margin: 0;
-    word-break: break-word;
+    width: 176px;
+    height: 58px;
+    overflow: hidden;
+    text-decoration: none;
 
-    @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+
+    span {
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
         font-size: 14px;
+        width: 120px;
+        height: auto;
     }
 `;
 

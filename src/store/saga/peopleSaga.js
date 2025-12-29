@@ -4,21 +4,19 @@ import { getPopularPeople, searchPeople } from '../../features/people/peopleAPI'
 
 function* handleFetchPeople(action) {
     try {
-        // Rozpakowujemy page i query z payloadu (używając wartości domyślnych)
-        const { page, query } = action.payload || { page: 1, query: "" };
+        const payload = action.payload;
+        const page = typeof payload === "number" ? payload : (payload?.page || 1);
+        const query = typeof payload === "object" ? payload?.query : undefined;
 
-        // Dodajemy opóźnienie (debounce), aby nie strzelać do API przy każdym znaku
-        yield delay(600);
-
-        // Wybieramy odpowiednią funkcję API w zależności od obecności query
-        const response = query 
-            ? yield call(searchPeople, query, page) 
+        const response = query
+            ? yield call(searchPeople, { page, query })
             : yield call(getPopularPeople, page);
 
+        yield delay(500); // Loader UX
         yield put(fetchPeopleSuccess(response));
     } catch (err) {
-        console.error('peopleSaga error:', err);
-        yield put(fetchPeopleFailure());
+        console.error('peopleSaga error', err);
+        yield put(fetchPeopleFailure(err?.message));
     }
 }
 

@@ -21,6 +21,11 @@ import {
 
 export const MovieHeader = ({ movie }) => {
   const posterUrl = `${TMDB_CONFIG.IMAGE_BASE_URL}/w500${movie.poster_path}`;
+  const voteCount = movie?.vote_count ?? 0;
+  const formattedVoteCount = new Intl.NumberFormat("pl-PL", {
+    notation: "compact",
+    compactDisplay: "short",
+  }).format(voteCount);
 
   return (
     <Wrapper>
@@ -49,7 +54,7 @@ export const MovieHeader = ({ movie }) => {
           <StarIcon />
           <Score>{movie.vote_average?.toFixed(1).replace(".", ",")}</Score>
           <MaxScore>/ 10</MaxScore>
-          <Votes>{movie.vote_count} votes</Votes>
+          <Votes>{formattedVoteCount} głosów</Votes>
         </RatingSection>
 
         <Overview>{movie.overview}</Overview>

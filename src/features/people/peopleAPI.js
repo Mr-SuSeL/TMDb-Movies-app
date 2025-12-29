@@ -37,21 +37,39 @@ export const getTrendingPeople = async (page, timeWindow = "day") => {
     return await fetchTMDB(url);
 };
 
-export const getPopularPeople = async (page) => {
-    const url = new URL(`${BASE_URL}/person/popular`);
-    url.searchParams.set("page", page);
-    url.searchParams.set("language", "pl-PL");
-    return await fetchTMDB(url);
+    const response = await fetch(url);
+    if (!response.ok) {
+        console.error(`BŁĄD API! Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.json();
 };
 
-// NOWA FUNKCJA DO WYSZUKIWANIA LUDZI
-export const searchPeople = async (query, page) => {
-    if (!query) return; // Zabezpieczenie przed pustym zapytaniem
+export const searchPeople = async ({ page = 1, query }) => {
+    const V3_KEY = sanitize(process.env.REACT_APP_TMDB_API_KEY);
+    const BASE_URL = sanitize(process.env.BASE_URL) || "https://api.themoviedb.org/3";
+
+    if (!V3_KEY) {
+        console.error("BŁĄD: Klucz TMDB nie został odczytany! Sprawdź .env.");
+        throw new Error("TMDB API Key is missing.");
+    }
+
+    const safeQuery = (query || "").trim();
+    if (!safeQuery) {
+        return getPopularPeople(page);
+    }
 
     const url = new URL(`${BASE_URL}/search/person`);
-    url.searchParams.set("query", query);
+    url.searchParams.set("api_key", V3_KEY);
+    url.searchParams.set("query", safeQuery);
     url.searchParams.set("page", page);
     url.searchParams.set("language", "pl-PL");
-    
-    return await fetchTMDB(url);
+    url.searchParams.set("include_adult", "false");
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        console.error(`BŁĄD API! Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.json();
 };

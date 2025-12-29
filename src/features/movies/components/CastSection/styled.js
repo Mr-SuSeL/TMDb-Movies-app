@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Section = styled.section`
   margin-top: 64px;
@@ -32,17 +33,26 @@ export const PeopleGrid = styled.div`
   }
 `;
 
-export const PersonCard = styled.article`
+export const PersonCard = styled(Link)`
   background-color: ${({ theme }) => theme.cardBg};
   padding: 16px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   height: 100%;
+  text-decoration: none;
+  color: inherit;
   box-shadow: ${({ theme }) => 
     theme.cardBg === "#ffffff" 
       ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
       : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 14px 34px rgba(17, 24, 39, 0.16);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 8px;

@@ -6,7 +6,7 @@ const Header = () => (
   <HeaderWrapper>
     <LogoTitleWrapper as={Link} to="/movies">
       <Logo />
-      <Title>Movies Browser</Title>
+      <Title>Przeglądarka filmów</Title>
     </LogoTitleWrapper>
   </HeaderWrapper>
 );

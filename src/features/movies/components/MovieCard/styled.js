@@ -13,7 +13,8 @@ export const MovieCardContainer = styled.article`
     theme.cardBg.toLowerCase() === "#ffffff" 
       ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
       : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
-  
+
+  /* Subtelną ramka w Dark Mode dla odcięcia kafelka od tła strony */
   border: none;
 
   &:hover {
@@ -47,6 +48,8 @@ export const MovieInfo = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
     margin-top: 0;
+    justify-content: flex-start;
+    gap: 12px;
   }
 `;
 
@@ -79,15 +82,19 @@ export const TagsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 16px;
+  margin: 8px 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin: 8px 0 0;
+  }
 `;
 
 export const Tag = styled.span`
-  /* Zastosowałem .toLowerCase(), aby uniknąć problemów z wielkością liter w HEX */
-  background-color: ${({ theme }) => 
-    theme.cardBg.toLowerCase() === "#ffffff" 
-      ? "#E4E6F0" 
-      : "#444444"}; 
+  /* Tło tagu: szare dla jasnego motywu, ciemnoniebieskie/szare dla ciemnego */
+  background: ${({ theme }) => theme.color.divider};
+  
+  /* Kolor tekstu zawsze ze zmiennej theme.text (biały w nocy) */
+  color: ${({ theme }) => theme.text};
   
   color: ${({ theme }) => 
     theme.cardBg.toLowerCase() === "#ffffff" 
@@ -110,11 +117,19 @@ export const RatingWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: auto; 
+  flex-wrap: nowrap;
+  min-width: 0;
+  margin-top: auto;
   padding-top: 10px;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
-    margin-top: 8px;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 126px;
+    height: 107px;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-top: 0;
+    padding-top: 0;
   }
 `;
 
@@ -137,6 +152,7 @@ export const Rate = styled.span`
   font-weight: 600;
   font-size: 16px;
   color: ${({ theme }) => theme.text};
+  white-space: nowrap;
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
     font-size: 13px;
@@ -146,6 +162,10 @@ export const Rate = styled.span`
 export const Votes = styled.span`
   color: ${({ theme }) => theme.color?.darkerGrey || "#7E839A"};
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
     font-size: 13px;

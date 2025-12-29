@@ -19,6 +19,11 @@ export const Hero = ({ movie }) => {
   if (!movie || !movie.backdrop_path) return null;
 
   const heroUrl = `${TMDB_CONFIG.IMAGE_BASE_URL}/original${movie.backdrop_path}`;
+  const voteCount = movie?.vote_count ?? 0;
+  const formattedVoteCount = new Intl.NumberFormat("pl-PL", {
+    notation: "compact",
+    compactDisplay: "short",
+  }).format(voteCount);
 
   return (
     <Wrapper>
@@ -32,7 +37,7 @@ export const Hero = ({ movie }) => {
                 <Score>{movie.vote_average ? movie.vote_average.toFixed(1).replace(".", ",") : "0,0"}</Score>
                 <MaxScore>/ 10</MaxScore>
               </ScoreSection>
-              <Votes>{movie.vote_count || 0} głosów</Votes>
+              <Votes>{formattedVoteCount} głosów</Votes>
             </RatingSection>
           </Content>
         </Container>

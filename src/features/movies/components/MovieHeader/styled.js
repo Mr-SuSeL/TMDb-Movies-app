@@ -4,7 +4,12 @@ export const Wrapper = styled.article`
   background: ${({ theme }) => theme.cardBg};
   color: ${({ theme }) => theme.text};
   padding: 40px;
-  border-radius: 5px;
+  /* Zmiana: Cień staje się bardzo delikatny i ciemny w trybie Dark Mode */
+  box-shadow: ${({ theme }) => 
+    theme.cardBg === "#ffffff" 
+      ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
+      : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
+  border: none;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 40px;
@@ -100,18 +105,8 @@ export const Tags = styled.ul`
 `;
 
 export const Tag = styled.li`
-  /* Naprawa: Dokładnie #E4E6F0 dla jasnego motywu */
-  background: ${({ theme }) => 
-    theme.cardBg.toLowerCase() === "#ffffff" 
-      ? "#E4E6F0" 
-      : "#444444"};
-  
-  /* Naprawa: Wymuszony ciemny tekst dla jasnego tła */
-  color: ${({ theme }) => 
-    theme.cardBg.toLowerCase() === "#ffffff" 
-      ? "#18181B" 
-      : "#FFFFFF"};
-      
+  background: ${({ theme }) => theme.color.divider};
+  color: ${({ theme }) => theme.text};
   padding: 8px 16px;
   border-radius: 5px;
   font-size: 14px;
@@ -126,6 +121,8 @@ export const RatingSection = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: nowrap;
+  min-width: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet || "1024px"}) {
     gap: 8px;
@@ -166,7 +163,11 @@ export const MaxScore = styled.span`
 
 export const Votes = styled.span`
   font-size: 14px;
-  color: ${({ theme }) => theme.color?.darkerGrey || "#7E839A"};
+  color: ${({ theme }) => theme.cardBg === "#ffffff" ? theme.color.black : theme.color.darkerGrey};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet || "1024px"}) {
     font-size: 13px;

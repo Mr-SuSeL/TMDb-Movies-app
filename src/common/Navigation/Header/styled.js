@@ -31,14 +31,14 @@ export const Logo = styled(VideoIcon)`
 `;
 
 export const Title = styled.h1`
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 40px;
-    letter-spacing: -1.5px;
-    /* Poprawka: Kolor biały na sztywno zgodnie z makietą */
-    color: #FFFFFF;
-    margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: -1.5px;
+  text-transform: capitalize;
+  color: ${({ theme }) => theme.color.white};
+  margin: 0;
 
     @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
         font-size: 13px;

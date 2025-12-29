@@ -10,17 +10,11 @@ export const Page = styled.main`
   }
 `;
 
-export const Title = styled.h2`
-  margin: 0 0 24px; // Odstęp pod nagłówkiem
-  font-family: 'Poppins', sans-serif;
-  font-style: normal;
+export const Heading = styled.h2`
+  font-family: Poppins;
   font-weight: 600;
   font-size: 36px;
-  line-height: 1.2;
-  color: ${({ theme }) => theme.text || "#18181B"};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
+  line-height: 120%;
+  letter-spacing: 0px;
+  vertical-align: middle;
 `;

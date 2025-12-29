@@ -4,7 +4,7 @@ import MovieCard from "./components/MovieCard";
 import { MoviesGrid, MovieTileLink } from "./components/MoviesGrid/styled";
 import { Pagination } from "../../common/Pagination";
 import { fetchPopularMoviesRequest } from "../../store/slices/moviesSlice";
-import { Page, Title } from "./styled"; // Zmiana: importujemy Title
+import { Page, Heading } from "./styled";
 import { Loader } from "../../common/Loader";
 import { NoResults } from "../../common/NoResults";
 import { useQueryParameter } from "../../features/search/queryParameters";
@@ -36,12 +36,11 @@ function PopularMovies() {
 
   return (
     <Page>
-      {/* Poprawka: Używamy stylizowanego Title zamiast <h2> */}
-      <Title>
+      <Heading>
         {query 
-          ? `Search results for "${query}" (${totalResults})` 
-          : "Popular movies"}
-      </Title>
+          ? `Wyniki wyszukiwania dla "${query}" (${totalResults})` 
+          : "Popular Movies"}
+      </Heading>
       
       <MoviesGrid>
         {popularMovies.map((movie) => (
