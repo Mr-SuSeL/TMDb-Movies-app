@@ -9,6 +9,7 @@ const base = {
     candlelight: "#FCD12A", // Żółty dla gwiazdek
   },
   breakpoints: {
+    mobile: "640px",
     mobileMin: "480px",
     mobileMax: "767px",
     tablet: "1024px",
