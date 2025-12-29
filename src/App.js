@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { AppContainer, GlobalStyle } from "./styledGlobals";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./theme";
+import { AppContainer, GlobalStyle, ThemeSwitcherButton } from "./styledGlobals"; // Poprawiony import
 import Navigation from "./common/Navigation";
 import PopularMovies from "./features/movies/PopularMovies";
 import MovieDetails from "./features/movies/MovieDetails";
@@ -9,8 +11,12 @@ import PersonDetails from "./features/people/PersonDetails";
 import { PageContainer } from "./common/Layout/PageContainer";
 
 function App() {
+  const [isDark, setIsDark] = useState(false); // Domyślnie jasny
+
+  const toggleTheme = () => setIsDark(!isDark);
+
   return (
-    <>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyle />
       <AppContainer>
         <Navigation />
@@ -24,8 +30,12 @@ function App() {
             <Route path="*" element={<PopularMovies />} />
           </Routes>
         </PageContainer>
+        
+        <ThemeSwitcherButton onClick={toggleTheme}>
+          {isDark ? "☀️ Tryb Jasny" : "🌙 Tryb Ciemny"}
+        </ThemeSwitcherButton>
       </AppContainer>
-    </>
+    </ThemeProvider>
   );
 }
 

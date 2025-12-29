@@ -32,25 +32,24 @@ function MovieCard({ movie }) {
     <MovieCardContainer>
       <MoviePoster src={posterUrl} alt={movie.title} />
       <MovieInfo>
-        <div>
-          <MovieTitle>{movie.title}</MovieTitle>
-          <MovieYear>
-              {movie.release_date ? movie.release_date.split("-")[0] : "Year unknown"}
-          </MovieYear>
-          {genres && genres.length > 0 && (
-            <TagsWrapper>
-              {genres.map(genre => (
-                <Tag key={genre}>{genre}</Tag>
-              ))}
-            </TagsWrapper>
-          )}
-        </div>
+
+        <MovieTitle>{movie.title}</MovieTitle>
+        <MovieYear>
+          {movie.release_date ? movie.release_date.split("-")[0] : "Year unknown"}
+        </MovieYear>
+        {genres && genres.length > 0 && (
+          <TagsWrapper>
+            {genres.map(genre => (
+              <Tag key={genre}>{genre}</Tag>
+            ))}
+          </TagsWrapper>
+        )}
         <RatingWrapper>
           <Star>
             <StarIcon />
           </Star>
           <Rate>
-              {movie.vote_average ? movie.vote_average.toFixed(1).replace(".", ",") : "0"}
+            {movie.vote_average ? movie.vote_average.toFixed(1).replace(".", ",") : "0"}
           </Rate>
           <Votes>{formattedVoteCount} głosów</Votes>
         </RatingWrapper>

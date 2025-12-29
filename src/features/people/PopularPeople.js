@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useQueryParameter } from "../../features/search/queryParameters";
+import { NoResults } from "../../common/NoResults";
 import {
     fetchPeopleStart,
     selectPeopleList,

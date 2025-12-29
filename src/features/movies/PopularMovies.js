@@ -18,9 +18,7 @@ function PopularMovies() {
   );
 
   useEffect(() => {
-
     const pageToFetch = query ? 1 : page;
-
     dispatch(fetchPopularMoviesRequest({ page: pageToFetch, query: query }));
   }, [dispatch, query, page]);
 
@@ -29,13 +27,8 @@ function PopularMovies() {
     dispatch(fetchPopularMoviesRequest({ page: newPage, query: query }));
   };
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <p>Błąd: {error}</p>;
-  }
+  if (loading) return <Loader />;
+  if (error) return <p>Błąd: {error}</p>;
 
   if (!loading && query && popularMovies.length === 0) {
     return <NoResults query={query} />;

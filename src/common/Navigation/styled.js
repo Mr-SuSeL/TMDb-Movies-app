@@ -1,17 +1,23 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.nav`
   width: 100%;
-  background-color: ${({ theme }) => theme.color.black};
+  /* Poprawka: Kolor ustawiony na czysty czarny, aby idealnie pasował do sekcji Hero */
+  background-color: #000000; 
+  /* Poprawka: Kolor tekstu na sztywno biały */
+  color: #FFFFFF;
+  padding: 23px 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
+    padding: 16px;
+  }
 `;
 
 export const Container = styled.div`
   max-width: 1368px;
   margin: 0 auto;
-  padding: 0 40px;
-  min-height: 94px;
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto auto 1fr auto;
   align-items: center;
   column-gap: 48px;
 
@@ -31,8 +37,6 @@ export const Container = styled.div`
   }
 `;
 
-// DODAJEMY BRAKUJĄCE ELEMENTY PONIŻEJ:
-
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -43,14 +47,25 @@ export const MenuWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
+    gap: 12px;
+  }
 `;
 
 export const SearchWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-self: end; 
+
+  @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
+    width: 100%;
+    justify-self: stretch;
+  }
 `;
 
 export const ThemeToggleWrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 12px;
 `;

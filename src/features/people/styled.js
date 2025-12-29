@@ -69,25 +69,25 @@ export const CardRoot = styled.div`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: #ffffff;
-    box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
+    background: ${({ theme }) => theme.cardBg || "#ffffff"};
+    box-shadow: ${({ theme }) => 
+        theme.cardBg === "#ffffff" 
+            ? "0px 4px 12px rgba(186, 199, 213, 0.5)" 
+            : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
     padding: 16px;
     gap: 10px;
     border-radius: 5px;
     width: 208px;
-    height: 339px;
+    height: 100%;
     box-sizing: border-box;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition: transform 0.18s ease;
 
     &:hover {
         transform: translateY(-4px);
-        box-shadow: 0px 14px 34px rgba(17, 24, 39, 0.16);
     }
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
         width: 100%;
-        height: auto;
-        aspect-ratio: 136 / 245;
         padding: 8px;
         gap: 8px;
     }
@@ -101,7 +101,7 @@ export const ProfileImageWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #E4E6F0;
+    background-color: ${({ theme }) => theme.color?.divider || "#E4E6F0"};
 
     & img {
         width: 100%;
@@ -109,20 +109,7 @@ export const ProfileImageWrapper = styled.div`
         object-fit: cover;
     }
 
-    & svg {
-        width: 60%;
-        height: 60%;
-
-        & path {
-            fill: none;
-        }
-        
-        & ellipse {
-            fill: none;
-        }
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
+    @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
         width: 100%;
         height: auto;
         aspect-ratio: 120 / 178;
@@ -130,13 +117,10 @@ export const ProfileImageWrapper = styled.div`
 `;
 
 export const Name = styled.p`
-    font-family: 'Poppins', sans-serif;
     font-size: 22px;
     font-weight: 500;
     line-height: 130%;
-    letter-spacing: 0px;
-    text-align: center;
-    color: #18181B;
+    color: ${({ theme }) => theme.text || "#18181B"};
     margin: 0;
     width: 176px;
     height: 58px;
@@ -167,7 +151,7 @@ export const LoadingContainer = styled.div`
     text-align: center;
     font-size: 20px;
     font-weight: 600;
-    color: #0f172a;
+    color: ${({ theme }) => theme.text || "#000000"};
     margin-top: 32px;
 `;
 
@@ -176,33 +160,23 @@ export const PaginationBar = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-top: 12px;
-    flex-wrap: wrap;
+    margin: 40px 0;
 `;
 
 export const PageButton = styled.button`
-    min-width: 70px;
-    padding: 9px 14px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    background: ${({ primary }) => primary ? '#1d4ed8' : '#ffffff'};
-    color: ${({ primary }) => primary ? '#ffffff' : '#1f2937'};
-    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    background: ${({ primary, theme }) => primary ? "#0044CC" : (theme.color?.divider || "#E4E6F0")};
+    color: ${({ primary, theme }) => primary ? "#FFFFFF" : (theme.text || "#1f2937")};
     cursor: pointer;
-    transition: all 0.15s ease;
 
     &:disabled {
-        opacity: 0.55;
+        opacity: 0.5;
         cursor: not-allowed;
-    }
-
-    &:hover:enabled {
-        border-color: #1d4ed8;
-        box-shadow: 0 8px 18px rgba(59, 130, 246, 0.18);
     }
 `;
 
 export const PageInfo = styled.span`
-    font-weight: 600;
-    color: #1f2937;
+    color: ${({ theme }) => theme.text || "#1f2937"};
 `;

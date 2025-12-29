@@ -15,6 +15,7 @@ import {
 } from "./styled";
 
 export const Hero = ({ movie }) => {
+  // Sprawdzamy, czy movie i backdrop_path istnieją
   if (!movie || !movie.backdrop_path) return null;
 
   const heroUrl = `${TMDB_CONFIG.IMAGE_BASE_URL}/original${movie.backdrop_path}`;
@@ -33,7 +34,7 @@ export const Hero = ({ movie }) => {
             <RatingSection>
               <ScoreSection>
                 <StarIcon />
-                <Score>{movie.vote_average?.toFixed(1).replace(".", ",")}</Score>
+                <Score>{movie.vote_average ? movie.vote_average.toFixed(1).replace(".", ",") : "0,0"}</Score>
                 <MaxScore>/ 10</MaxScore>
               </ScoreSection>
               <Votes>{formattedVoteCount} głosów</Votes>

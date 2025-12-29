@@ -1,10 +1,13 @@
-// src/features/movies/styled.js
 import styled from "styled-components";
 
 export const Page = styled.main`
   max-width: 1368px;
-  margin: 24px auto 80px;
+  margin: 56px auto 103px; // Zmiana marginesów na zgodne z makietą
   padding: 0 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints?.mobileMax || "767px"}) {
+    margin: 24px auto 40px;
+  }
 `;
 
 export const Heading = styled.h2`

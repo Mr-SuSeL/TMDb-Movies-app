@@ -28,6 +28,8 @@ const peopleSlice = createSlice({
         fetchPeopleSuccess: (state, action) => {
             state.peopleList = action.payload.results;
             const apiTotal = action.payload.total_pages;
+            
+            // TMDB nie pozwala na paginację powyżej 500 stron
             state.totalPages = Math.min(apiTotal, 500);
             state.totalResults = action.payload.total_results ?? 0;
             state.isLoading = false;
