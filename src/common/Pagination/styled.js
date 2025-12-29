@@ -57,15 +57,19 @@ export const Button = styled.button`
   font-size: 14px;
   font-weight: 500;
 
+  opacity: ${({ disabled }) => (disabled ? 0.55 : 1)};
+
   background-color: ${({ $primary, disabled }) =>
   disabled
-    ? "#f3f4f6"
+    ? $primary
+      ? "rgba(214, 228, 255, 1)"
+      : "rgba(228, 230, 240, 1)"
     : $primary
       ? "rgba(214, 228, 255, 1)"
       : "rgba(228, 230, 240, 1)"};
 
   color: ${({ $primary, disabled }) =>
-    disabled ? "#9ca3af" : $primary ? "#3b82f6" : "#4b5563"};
+    disabled ? "#9ca3af" : $primary ? "rgba(51, 51, 51, 1)" : "#4b5563"};
 
   cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
   transition: background-color 0.15s ease, color 0.15s ease;
@@ -74,8 +78,16 @@ export const Button = styled.button`
     ${({ disabled, $primary }) =>
       !disabled &&
   ($primary
-    ? `background-color: rgba(214, 228, 255, 1);`
-    : `background-color: rgba(228, 230, 240, 1);`)}
+    ? `background-color: rgba(224, 236, 255, 1);`
+    : `background-color: rgba(236, 238, 246, 1);`)}
+  }
+
+  &:active {
+    ${({ disabled, $primary }) =>
+      !disabled &&
+  ($primary
+    ? `background-color: rgba(235, 244, 255, 1);`
+    : `background-color: rgba(242, 244, 250, 1);`)}
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -91,6 +103,7 @@ export const Info = styled.span`
   color: ${({ theme }) => theme.color.darkerGrey};
 
   strong {
+    color: rgba(24, 24, 27, 1);
     font-weight: 700;
   }
 

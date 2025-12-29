@@ -36,8 +36,8 @@ const Search = () => {
     };
 
     const placeholder = location.pathname.includes("people")
-        ? "Search for people..."
-        : "Search for movies...";
+        ? "Szukaj osób..."
+        : "Szukaj filmów...";
 
     return (
         <SearchWrapper>

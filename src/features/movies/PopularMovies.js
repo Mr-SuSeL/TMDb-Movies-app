@@ -4,7 +4,7 @@ import MovieCard from "./components/MovieCard";
 import { MoviesGrid, MovieTileLink } from "./components/MoviesGrid/styled";
 import { Pagination } from "../../common/Pagination";
 import { fetchPopularMoviesRequest } from "../../store/slices/moviesSlice";
-import { Page } from "./styled";
+import { Page, Heading } from "./styled";
 import { Loader } from "../../common/Loader";
 import { NoResults } from "../../common/NoResults";
 import { useQueryParameter } from "../../features/search/queryParameters";
@@ -43,11 +43,11 @@ function PopularMovies() {
 
   return (
     <Page>
-      <h2>
+      <Heading>
         {query 
-          ? `Search results for "${query}" (${totalResults})` 
+          ? `Wyniki wyszukiwania dla "${query}" (${totalResults})` 
           : "Popular Movies"}
-      </h2>
+      </Heading>
       
       <MoviesGrid>
         {popularMovies.map((movie) => (

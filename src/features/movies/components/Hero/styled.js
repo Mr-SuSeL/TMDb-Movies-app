@@ -62,7 +62,7 @@ export const Title = styled.h1`
 
 export const RatingSection = styled.div`
   display: flex;
-  flex-direction: column; // Układ pionowy: Górny rząd to ocena, dolny to głosy
+  flex-direction: column; // Układ pionowy: Górny rząd to ocena, dolny to liczba głosów
   gap: 16px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {

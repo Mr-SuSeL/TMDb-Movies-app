@@ -16,10 +16,7 @@ export const MovieCardContainer = styled.article`
       : "0px 4px 12px rgba(0, 0, 0, 0.5)"};
 
   /* Subtelną ramka w Dark Mode dla odcięcia kafelka od tła strony */
-  border: ${({ theme }) => 
-    theme.cardBg === "#ffffff" 
-      ? "none" 
-      : `1px solid ${theme.color.black}`};
+  border: none;
 
   &:hover {
     transform: scale(1.02);
@@ -52,6 +49,8 @@ export const MovieInfo = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     margin-top: 0;
+    justify-content: flex-start;
+    gap: 12px;
   }
 `;
 
@@ -83,12 +82,15 @@ export const TagsWrapper = styled.div`
   flex-wrap: wrap;
   gap: 8px;
   margin: 8px 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    margin: 8px 0 0;
+  }
 `;
 
 export const Tag = styled.span`
   /* Tło tagu: szare dla jasnego motywu, ciemnoniebieskie/szare dla ciemnego */
-  background: ${({ theme }) => 
-    theme.cardBg === "#ffffff" ? theme.color.divider : "#2f3542"};
+  background: ${({ theme }) => theme.color.divider};
   
   /* Kolor tekstu zawsze ze zmiennej theme.text (biały w nocy) */
   color: ${({ theme }) => theme.text};
@@ -108,8 +110,20 @@ export const RatingWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: nowrap;
+  min-width: 0;
   margin-top: auto;
   padding-top: 10px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    width: 126px;
+    height: 107px;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-top: 0;
+    padding-top: 0;
+  }
 `;
 
 export const Star = styled.div`
@@ -134,6 +148,7 @@ export const Rate = styled.span`
   font-weight: 600;
   font-size: 16px;
   color: ${({ theme }) => theme.text};
+  white-space: nowrap;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 13px;
@@ -145,6 +160,10 @@ export const Votes = styled.span`
   color: ${({ theme }) => 
     theme.cardBg === "#ffffff" ? theme.color.black : theme.color.darkerGrey};
   font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 13px;

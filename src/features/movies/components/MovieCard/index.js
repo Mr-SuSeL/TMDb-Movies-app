@@ -22,6 +22,11 @@ function MovieCard({ movie }) {
     : "https://via.placeholder.com/500x750?text=No+Poster";
 
   const genres = movie.genre_ids?.map(id => GENRES_MAP[id]).filter(Boolean);
+  const voteCount = movie?.vote_count ?? 0;
+  const formattedVoteCount = new Intl.NumberFormat("pl-PL", {
+    notation: "compact",
+    compactDisplay: "short",
+  }).format(voteCount);
 
   return (
     <MovieCardContainer>
@@ -47,7 +52,7 @@ function MovieCard({ movie }) {
           <Rate>
               {movie.vote_average ? movie.vote_average.toFixed(1).replace(".", ",") : "0"}
           </Rate>
-          <Votes>{movie.vote_count || 0} votes</Votes>
+          <Votes>{formattedVoteCount} głosów</Votes>
         </RatingWrapper>
       </MovieInfo>
     </MovieCardContainer>

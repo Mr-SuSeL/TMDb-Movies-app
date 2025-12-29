@@ -15,7 +15,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: rgba(245, 245, 250, 1);
   color: #111827;
   font-family: "Poppins", sans-serif;
 }
@@ -24,7 +24,7 @@ body {
 
 export const AppContainer = styled.div`
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: rgba(245, 245, 250, 1);
   color: #111827;
 `;
 

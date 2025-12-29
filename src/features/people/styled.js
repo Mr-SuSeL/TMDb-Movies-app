@@ -5,13 +5,18 @@ export const PeopleSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 28px;
-    width: 1368px;
+    max-width: 1368px;
+    width: 100%;
     margin: 56px auto 0;
+    padding: 0;
+
+    @media (max-width: 1367px) {
+        padding: 0 16px;
+    }
 
     @media (max-width: 767px) {
-        width: calc(100% - 32px);
         margin: 24px auto 0;
-        padding: 0;
+        padding: 0 16px;
     }
 `;
 
@@ -23,15 +28,33 @@ export const Heading = styled.h1`
     line-height: 120%;
     letter-spacing: 0px;
     color: #0b1324;
+
+    @media (max-width: 767px) {
+        font-size: 20px;
+    }
 `;
 
 export const GridContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, 208px);
+    grid-template-columns: repeat(6, 208px);
     gap: 24px;
+    align-items: stretch;
+    justify-content: start;
+
+    @media (max-width: 1367px) {
+        grid-template-columns: repeat(5, 208px);
+    }
+
+    @media (max-width: 1199px) {
+        grid-template-columns: repeat(4, 208px);
+    }
+
+    @media (max-width: 1023px) {
+        grid-template-columns: repeat(3, 208px);
+    }
 
     @media (max-width: 767px) {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 16px;
     }
 `;
@@ -49,7 +72,7 @@ export const CardRoot = styled.div`
     background: #ffffff;
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
     padding: 16px;
-    gap: 12px;
+    gap: 10px;
     border-radius: 5px;
     width: 208px;
     height: 339px;
@@ -115,12 +138,28 @@ export const Name = styled.p`
     text-align: center;
     color: #18181B;
     margin: 0;
-    max-width: 176px;
+    width: 176px;
+    height: 58px;
+    overflow: hidden;
     text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+
+    span {
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
         font-size: 14px;
-        max-width: 120px;
+        width: 120px;
+        height: auto;
     }
 `;
 

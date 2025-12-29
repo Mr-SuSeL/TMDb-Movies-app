@@ -4,39 +4,63 @@ import {
     fetchPeopleStart,
     selectPeopleList,
     selectPeopleLoading,
+    selectPeopleError,
     selectCurrentPage,
     selectTotalPages,
+    selectPeopleTotalResults,
     setPage
 } from "../../store/slices/peopleSlice.js";
 import PersonTitle from "./PersonTitle";
 import { Loader } from "../../common/Loader";
 import { Pagination } from "../../common/Pagination";
 import { PeopleSection, Heading, GridContainer, LoadingContainer } from './styled.js';
+import { useQueryParameter } from "../search/queryParameters";
+import { NoResults } from "../../common/NoResults";
 
 const PopularPeople = () => {
     const dispatch = useDispatch();
+    const query = useQueryParameter("search");
     const peopleList = useSelector(selectPeopleList);
     const isLoading = useSelector(selectPeopleLoading);
+    const error = useSelector(selectPeopleError);
     const currentPage = useSelector(selectCurrentPage);
     const totalPages = useSelector(selectTotalPages);
+    const totalResults = useSelector(selectPeopleTotalResults);
 
     useEffect(() => {
-        dispatch(fetchPeopleStart(currentPage));
-    }, [dispatch, currentPage]);
+        const pageToFetch = query ? 1 : currentPage;
+        dispatch(fetchPeopleStart({ page: pageToFetch, query }));
+    }, [dispatch, currentPage, query]);
 
     const handlePageChange = (newPage) => {
         if (newPage < 1 || newPage > totalPages) return;
-        dispatch(setPage(newPage));
+        if (query) {
+            dispatch(fetchPeopleStart({ page: newPage, query }));
+        } else {
+            dispatch(setPage(newPage));
+        }
     };
 
 
     if (isLoading) {
         return (
             <PeopleSection>
-                <Heading>Popularni ludzie</Heading>
+                <Heading>
+                    {query
+                        ? `Wyniki wyszukiwania dla "${query}" (${totalResults})`
+                        : "Popularni ludzie"}
+                </Heading>
                 <Loader />
             </PeopleSection>
         );
+    }
+
+    if (error) {
+        return <LoadingContainer>Błąd: {error}</LoadingContainer>;
+    }
+
+    if (!isLoading && query && (!peopleList || peopleList.length === 0)) {
+        return <NoResults query={query} />;
     }
 
     if (!isLoading && (!peopleList || peopleList.length === 0)) {
@@ -47,7 +71,11 @@ const PopularPeople = () => {
 
     return (
         <PeopleSection>
-            <Heading>Popularni ludzie</Heading>
+            <Heading>
+                {query
+                    ? `Wyniki wyszukiwania dla "${query}" (${totalResults})`
+                    : "Popularni ludzie"}
+            </Heading>
 
             <GridContainer>
                 {peopleList.map(person => (

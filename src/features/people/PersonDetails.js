@@ -144,7 +144,10 @@ const PersonDetails = () => {
                                 : null;
 
                             return (
-                                <MovieCard key={`cast-${movie.id}-${movie.credit_id}`}>
+                                <MovieCard
+                                    key={`cast-${movie.id}-${movie.credit_id}`}
+                                    to={`/movie/${movie.id}`}
+                                >
                                     <MoviePoster>
                                         {posterUrl ? (
                                             <img src={posterUrl} alt={movie.title} />
@@ -179,7 +182,10 @@ const PersonDetails = () => {
                                 : null;
 
                             return (
-                                <MovieCard key={`crew-${movie.id}-${movie.credit_id}`}>
+                                <MovieCard
+                                    key={`crew-${movie.id}-${movie.credit_id}`}
+                                    to={`/movie/${movie.id}`}
+                                >
                                     <MoviePoster>
                                         {posterUrl ? (
                                             <img src={posterUrl} alt={movie.title} />

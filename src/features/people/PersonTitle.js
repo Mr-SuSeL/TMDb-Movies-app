@@ -14,6 +14,9 @@ export default function PersonTitle({ person }) {
         : null;
 
     const detailsPath = `/person/${person.id}`;
+    const nameParts = (person?.name || "").trim().split(/\s+/).filter(Boolean);
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ");
 
     return (
         <StyledLink to={detailsPath} aria-label={`Zobacz szczegóły ${person.name}`}>
@@ -29,7 +32,10 @@ export default function PersonTitle({ person }) {
                         <NoProfileIcon />
                     )}
                 </ProfileImageWrapper>
-                <Name>{person.name}</Name>
+                <Name>
+                    <span>{firstName}</span>
+                    {lastName ? <span>{lastName}</span> : null}
+                </Name>
             </CardRoot>
         </StyledLink>
     );

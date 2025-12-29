@@ -4,7 +4,7 @@ import { Wrapper, StyledNoResultsPicture, Title } from "./styled";
 export const NoResults = ({ query }) => (
   <Wrapper>
     <Title>
-      {`Sorry, there are no results for "${query}"`}
+      {`Przepraszamy, brak wyników dla "${query}"`}
     </Title>
     <StyledNoResultsPicture />
   </Wrapper>

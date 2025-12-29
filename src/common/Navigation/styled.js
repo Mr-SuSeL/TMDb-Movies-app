@@ -15,11 +15,19 @@ export const Container = styled.div`
   align-items: center;
   column-gap: 48px;
 
+  & > :nth-child(2) {
+    margin-left: 32px;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: auto auto;
     row-gap: 12px;
     padding: 16px;
     min-height: unset;
+
+    & > :nth-child(2) {
+      margin-left: 0;
+    }
   }
 `;
 
